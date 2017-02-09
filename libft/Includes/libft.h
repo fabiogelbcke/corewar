@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+#ifndef LIBFT_.H
 # define LIBFT_H
 
 # include <string.h>
@@ -77,5 +77,6 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_cmpnocase(char *s1, char *s2);
 int		ft_gnl(int const fd, char **line);
 void	*ft_realloc(void *ptr, size_t size, size_t prev_size);
+char	*ft_join_strarr(char **strarr, char separator);
 
 #endif
