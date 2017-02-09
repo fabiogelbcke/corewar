@@ -15,6 +15,7 @@
 
 # include <string.h>
 # include <unistd.h>
+# include <stdlib.h>
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -54,7 +55,9 @@ char	*ft_strstr(const char *s1, const char *s2);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strsubfrom(char const *s, unsigned int start);
 char	**ft_strsplit(char const *s, char c);
+char	**ft_split_spaces(char const *s);
 char	*ft_strtrim(char const *s);
+int		ft_strarr_len(char **strarr);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -73,5 +76,6 @@ void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_cmpnocase(char *s1, char *s2);
 int		ft_gnl(int const fd, char **line);
+void	*ft_realloc(void *ptr, size_t size, size_t prev_size);
 
 #endif

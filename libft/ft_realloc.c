@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/01/23 18:48:50 by fschuber         ###   ########.fr       */
+/*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
+/*   Updated: 2017/01/23 19:22:08 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include "libft/Includes/libft.h"
-# include "op.h"
-# include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
-
-# define BUF_SIZE 20
-
-typedef struct			s_routine
+void		*ft_realloc(void *ptr, size_t size, size_t prev_size)
 {
-	char				*name;
-	int					pos;
-	struct s_routine	*next;
-}						t_routine;
-
-typedef struct			s_instr
-{
-	char				*name;
-	char				*opcode;
-	int					acb;
+	char	*new_ptr;
+	int		copy_size;
 	
-}						t_instr;
-
-#endif
+	if (!ptr)
+		return malloc(size);
+	if (size == 0)
+		return NULL;
+	new_ptr = malloc(size);
+	if (!new_ptr)
+		return NULL;
+	copy_size = (prev_size > size) ? size : prev_size;
+	ft_memcpy(new_ptr, ptr, copy_size);
+	free(ptr);
+	return new_ptr;
+}
