@@ -29,14 +29,19 @@ int			get_bytecodes_count(char **split_line)
 	if (sl_len == 0)
 		return (0);
 	count = 2;
-	params = ft_strsplit(split_line[sl_len - 1], ',');
+	params = ft_strsplit(split_line[sl_len - 1], SEPARATOR_CHAR);
 	sl_len = ft_strarr_len(params);
 	if (sl_len == 0)
 		return (count);
 	i = 0;
 	while (params[i])
 	{
-		
+		if (params[i][0] == 'r')
+			count += REG_SIZE;
+		else if (params[i][0] == LABEL_CHAR)
+			count += DIR_SIZE;
+		else
+			count += IND_SIZE;
 	}
 }
 
@@ -46,13 +51,14 @@ t_routine	*get_routines(char **input)
 	t_routine *head;
 
 	i = 0;
+	head = NULL;
 	while (input[i])
 	{
 		split_line = ft_split_spaces(input[i]);
 		if (split_line[0])
 		{
-			if (split_line[0][ft_strlen(split_line[0]) -2] == ':')
-			
+			if (is_routine(input[i])
+				
 		}
 	}
 

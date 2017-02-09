@@ -17,7 +17,7 @@ int			is_comment(char *line)
 	return (!is_empty(line) && line[0] == COMMENT_CHAR)
 }
 
-int			is_command(char *line)
+int			is_instruction(char *line)
 {
 }
 
