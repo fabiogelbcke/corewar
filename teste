@@ -1,28 +1,4 @@
-papapa
-eaew
-
-
-ee
-
-e
-e
-ee
-eeee
-hahaha
-eueueu
-sisksks
-eueueue
-apapap
-iieidid
-eueueue
-sisjjs
-dkdndnd
-ejeudjd
-eueusdjd
-ifusus
-djfksdfu
-sdfuweijd
-asjdfuw
-ejwue
-dueuejd
-fim
+l2:     sti r1,\%:live,\%1
+        and r1,\%0,r1
+live:   live \%1
+	zjmp \%:live

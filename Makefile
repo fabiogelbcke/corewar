@@ -2,7 +2,9 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror -g
 
-SRC =	asm.c
+SRC =	asm.c \
+		valid_line.c \
+		line_type.c
 
 OBJ	= $(SRC:.c=.o)
 

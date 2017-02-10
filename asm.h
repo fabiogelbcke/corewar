@@ -37,4 +37,15 @@ typedef struct			s_instr
 	
 }						t_instr;
 
+int						is_empty(char *line);
+int						is_comment(char *line);
+int						is_instruction(char *line);
+int						is_name(char *line);
+int						is_initial_comment(char *line);
+int						is_routine(char *line);
+int						valid_initial_comment(char *line);
+int						valid_name(char *line);
+int						valid_routine(char *line);
+
+
 #endif

@@ -24,6 +24,7 @@ int			get_bytecodes_count(char **split_line)
 	int		count;
 	int		sl_len;
 	int		i;
+	char	**params;
 
 	sl_len = ft_strarr_len(split_line);
 	if (sl_len == 0)
@@ -33,7 +34,7 @@ int			get_bytecodes_count(char **split_line)
 	sl_len = ft_strarr_len(params);
 	if (sl_len == 0)
 		return (count);
-	i = 0;
+	i = 1;
 	while (params[i])
 	{
 		if (params[i][0] == 'r')
@@ -42,31 +43,63 @@ int			get_bytecodes_count(char **split_line)
 			count += DIR_SIZE;
 		else
 			count += IND_SIZE;
+		i++;
 	}
+	return (count);
+}
+
+t_routine	*create_routine(char *name, int pos)
+{
+	t_routine *new_rout;
+
+	ft_putendl(name);
+	ft_putnbr(pos);
+	ft_putchar('\n');
+	new_rout = malloc(sizeof(t_routine));
+	new_rout->name = ft_strdup(name);
+	new_rout->pos = pos;
+	return new_rout;
 }
 
 t_routine	*get_routines(char **input)
 {
 	int		i;
-	t_routine *head;
+	t_routine *last;
+	t_routine *curr;
+	int		pos;
+	char	**split_line;
 
 	i = 0;
-	head = NULL;
+	last = NULL;
+	pos = 0;
 	while (input[i])
 	{
-		split_line = ft_split_spaces(input[i]);
-		if (split_line[0])
+		if (is_routine(input[i]))
 		{
-			if (is_routine(input[i])
-				
+			split_line = ft_split_spaces(input[i]);
+			curr = create_routine(split_line[0], pos);
+			curr->next = last;
+			last = curr;
+			input[i] = ft_join_strarr(&split_line[1], ' ');
 		}
+		pos += get_bytecodes_count(ft_split_spaces(input[i]));
+		i++;
 	}
-
+	return curr;
 }
 
 void	generate_output(char **input, char **output)
 {
-	t_routine *routines = get_routines();
+	t_routine *routines;
+
+	routines = get_routines(input);
+	/*while (routines)
+	{
+		ft_putendl("routine:");
+		ft_putendl(routines->name);
+		ft_putnbr(routines->pos);
+		routines = routines->next;
+		}*/
 }
 
 int		main(int argc, char **argv)
@@ -85,10 +118,8 @@ int		main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	while (++i)
 	{
-		ft_putnbr(i);
 		if (ft_gnl(fd, &(input[i - 1])) == 0)
 			break;
-		ft_putnbr(i);
 		if (i == total_size - 1)
 		{
 			input = ft_realloc(input, (total_size + BUF_SIZE) * sizeof(char*), total_size * sizeof(char*));
@@ -99,5 +130,5 @@ int		main(int argc, char **argv)
 	}
 	input[i] = NULL;
 	output = ft_memalloc(i * sizeof(char*));
-	get_output(input, output);
+	generate_output(input, output);
 }

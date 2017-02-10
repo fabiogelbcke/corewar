@@ -27,6 +27,7 @@ char		*ft_join_strarr(char **strarr, char separator)
 		while (strarr[i][j])
 			j++;
 		size += j + 1;
+		i++;
 	}
 	joined = ft_memalloc(sizeof(char) * size);
 	size = 0;
@@ -38,6 +39,8 @@ char		*ft_join_strarr(char **strarr, char separator)
 			joined[size++] = strarr[i][j++];
 		if (strarr[i + 1] && ft_strlen(strarr[i + 1]) > 0)
 			joined[size++] = separator;
+		i++;
 	}
 	joined[size] = '\0';
+	return (joined);
 }

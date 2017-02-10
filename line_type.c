@@ -14,7 +14,7 @@ int			is_empty(char *line)
 
 int			is_comment(char *line)
 {
-	return (!is_empty(line) && line[0] == COMMENT_CHAR)
+	return (!is_empty(line) && line[0] == COMMENT_CHAR);
 }
 
 int			is_instruction(char *line)
@@ -45,11 +45,11 @@ int			is_routine(char *line)
 	char	*first_word;
 
 	//TODO: CHECK IF NAME IS LABEL_CHARS
-	is_rout = !is_empty && !is_comment(line);
+	is_rout = !is_empty(line) && !is_comment(line);
 	is_rout = is_rout && !is_name(line);
 	is_rout = is_rout && !is_initial_comment(line);
 	split_line = ft_split_spaces(line);
 	first_word = split_line[0];
-	is_rout = is_rout && first_word[ft_strlen(first_word) - 2] == LABEL_CHAR;
+	is_rout = is_rout && first_word[ft_strlen(first_word) - 1] == LABEL_CHAR;
 	return (is_rout);
 }

@@ -14,7 +14,7 @@
 
 int ft_startswith(char *str, char *sub)
 {
-	if (!str or !sub)
+	if (!str || !sub)
 		return (0);
 	while (*str && *sub)
 	{

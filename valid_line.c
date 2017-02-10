@@ -47,10 +47,10 @@ int			valid_routine(char *line)
 		j = 0;
 		while (LABEL_CHARS[j])
 		{
-			if (LABELCHARS[j] == split_line[0][i])
+			if (LABEL_CHARS[j] == split_line[0][i])
 			{
 				i++;
-				continue
+				continue;
 			}
 			j++;
 		}
