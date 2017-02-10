@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/01/23 19:22:08 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */ 
 
@@ -14,9 +14,17 @@
 
 void	generate_line(char *input_line, char **line)
 {
-	static int curr_pos = 0;
+	static int curr_pos = 0;	
+}
 
-	
+int			get_param_size(char *param)
+{
+	if (param[0] == 'r')
+		return REG_SIZE;
+	else if (param[0] == LABEL_CHAR)
+		return DIR_SIZE;
+	else
+		return IND_SIZE;
 }
 
 int			get_bytecodes_count(char **split_line)
@@ -37,12 +45,7 @@ int			get_bytecodes_count(char **split_line)
 	i = 1;
 	while (params[i])
 	{
-		if (params[i][0] == 'r')
-			count += REG_SIZE;
-		else if (params[i][0] == LABEL_CHAR)
-			count += DIR_SIZE;
-		else
-			count += IND_SIZE;
+		count += get_param_size(params[i]);
 		i++;
 	}
 	return (count);
