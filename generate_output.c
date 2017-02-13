@@ -12,33 +12,47 @@
 
 #include "asm.h"
 
-int				main(int argc, char **argv)
+char			*get_opcode(char *cmd)
 {
-	int			fd;
-	char		**input;
-	char		**output;
 	int			i;
-	int			total_size;
-	
-	if (argc < 2)
-		return -1;
-	input = ft_memalloc(BUF_SIZE * sizeof(char*));
-	total_size = BUF_SIZE;
+
 	i = 0;
-	fd = open(argv[1], O_RDONLY);
-	while (++i)
+	while (i < 16)
 	{
-		if (ft_gnl(fd, &(input[i - 1])) == 0)
-			break;
-		if (i == total_size - 1)
-		{
-			input = ft_realloc(input, (total_size + BUF_SIZE) * sizeof(char*), total_size * sizeof(char*));
-			if (input == NULL)
-				return -1;
-			total_size += BUF_SIZE;
-		}
+		if (!ft_strcmp(op_tab[i].name, cmd))
+			return (ft_strjoin(int_to_bytecode(op_tab[i].nbarg, ",")));
 	}
-	input[i] = NULL;
-	output = ft_memalloc(i * sizeof(char*));
-	generate_output(input, output);
+	//Throw error
+}
+
+char			*get_coding_byte(char *line)
+{
+
+}
+
+void			generate_line(char *input_line, char **line)
+{
+	static int	curr_pos = 0;
+	static int	line_pos = 0;
+	int			i;
+
+	*line = get_opcode(ft_split_spaces(input_line)[0]);
+	*line = ft_strjoin(*line, get_coding_byte(input_line));
+}
+
+void			generate_output(char **input, char **output)
+{
+	t_routine	*routines;
+	int			i;
+	int			j;
+
+	routines = get_routines(input);
+	i = 0;
+	j = 0;
+	while (input[i])
+	{
+		if (is_instruction(input[i]) && valid_instruction(input[i]))
+			generate_line(input[i], &output[j++]);
+		i++;
+	}
 }

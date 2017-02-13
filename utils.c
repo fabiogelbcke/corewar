@@ -12,6 +12,30 @@
 
 #include "asm.h"
 
+int			get_bytecodes_count(char **split_line)
+{
+	int		count;
+	int		sl_len;
+	int		i;
+	char	**params;
+
+	sl_len = ft_strarr_len(split_line);
+	if (sl_len == 0)
+		return (0);
+	count = 2;
+	params = ft_strsplit(split_line[sl_len - 1], SEPARATOR_CHAR);
+	sl_len = ft_strarr_len(params);
+	if (sl_len == 0)
+		return (count);
+	i = 0;
+	while (params[i])
+	{
+		count += get_param_size(params[i], split_line[0]);
+		i++;
+	}
+	return (count);
+}
+
 int			get_dir_size(char *cmd)
 {
 	int i;
@@ -36,11 +60,30 @@ int			get_param_size(char *param, char *cmd)
 		return 2;
 }
 
-int			int_to_bytecode(int val, int bytes)
+char		*int_to_bytecode(int val, int bytes)
 {
 	char	*bytecode;
 	int		size;
+	int		i;
 
-	size = 4 * bytes  - 1;
+	size = 5 * bytes  - 1;
 	bytecode = malloc(sizeof(char) * size);
+	i = size - 1;
+	while (i >= 0)
+	{
+		if ((i + 4) % 5 == 0)
+			bytecode[i] = 'x';
+		else if ((i % 5) == 0)
+			bytecode[i] = '0';
+		else if (((i + 1) % 5) == 0)
+			bytecode[i] = ',';
+		else
+		{
+			bytecode[i] = ((val % 16) > 9) ? (val % 16) + 87 : (val % 16) + 48;
+			val = val / 16;
+		}
+		i--;
+	}
+	return (bytecode);
 }
+

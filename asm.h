@@ -63,6 +63,9 @@ int						valid_routine(char *line);
 t_routine				*get_routines(char **input);
 int						get_param_size(char *param, char *cmd);
 int						get_dir_size(char *cmd);
-
+char					*int_to_bytecode(int val, int byte);
+int						valid_routine(char *line);
+int						get_bytecodes_count(char **split_line);
+void					generate_output(char **input, char **output);
 
 #endif

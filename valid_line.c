@@ -58,3 +58,8 @@ int			valid_routine(char *line)
 	}
 	return (1);
 }
+
+int			valid_instruction(char *line)
+{
+	return (1);
+}
