@@ -3,11 +3,11 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror -g
 
 SRC =	asm.c \
-		valid_line.c \
-		line_type.c \
-		utils.c \
-		get_routines.c \
-		op.c \
+	valid_line.c \
+	line_type.c \
+	utils.c \
+	get_routines.c \
+	op.c \
 
 OBJ	= $(SRC:.c=.o)
 
