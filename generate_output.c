@@ -15,12 +15,19 @@
 char			*get_opcode(char *cmd)
 {
 	int			i;
+	char		*opcode;
+	char		*separator;
 
 	i = 0;
+	separator = ft_strdup("\0\0");
+	separator[0] = SEPARATOR_CHAR;
 	while (i < 16)
 	{
 		if (!ft_strcmp(op_tab[i].name, cmd))
-			return (ft_strjoin(int_to_bytecode(op_tab[i].opcode, 1), ","));
+		{
+			opcode = int_to_bytecode(op_tab[i].opcode, 1);
+			return (ft_strjoin(opcode,  separator));
+		}
 		i++;
 	}
 	//Throw error
@@ -54,33 +61,39 @@ char			*bin_to_bytecode(char *bin)
 	return int_to_bytecode(dec, 1);
 }
 
-char			*get_coding_byte(char *line)
+char			*get_coding_byte(char **params)
 {
 	char		**split_line;
-	char		**params;
 	char		*binary;
 	int			i;
+	char		*separator;
 	
 	//TODO: NO ACB FOR FORK, ZJMP AND LIVE
-	split_line = ft_split_spaces(line);
-	params = ft_strsplit(split_line[ft_strarr_len(split_line) - 1], SEPARATOR_CHAR);
 	i = 0;
 	binary = ft_strdup("");
 	while(params[i])
 		binary = ft_strjoin(binary, param_code(params[i++]));
 	while (ft_strlen(binary) < 8)
 		binary = ft_strjoin(binary, "00");
-	return (ft_strjoin(bin_to_bytecode(binary), ","));
+	separator = ft_strdup("\0\0");
+	separator[0] = SEPARATOR_CHAR;
+	return (ft_strjoin(bin_to_bytecode(binary), separator));
 }
 
 void			generate_line(char *input_line, char **line)
 {
-	static int	curr_pos = 0;
+	char		**split_input;
+	char		*cmd;
+	char		**params;
 	static int	line_pos = 0;
-	int			i;
 
-	*line = get_opcode(ft_split_spaces(input_line)[0]);
-	*line = ft_strjoin(*line, get_coding_byte(input_line));
+	split_input = ft_split_spaces(input_line);
+	cmd = split_input[0];
+	params = ft_strsplit(split_input[ft_strarr_len(split_input) - 1], SEPARATOR_CHAR);
+	*line = get_opcode(cmd);
+	*line = ft_strjoin(*line, get_coding_byte(params));
+	*line = ft_strjoin(*line, get_parameters_bytecode(params, cmd, line_pos));
+	line_pos += get_bytecodes_count(split_input);
 }
 
 void			generate_output(char **input, char **output)

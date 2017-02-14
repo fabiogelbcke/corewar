@@ -60,12 +60,13 @@ int						is_routine(char *line);
 int						valid_initial_comment(char *line);
 int						valid_name(char *line);
 int						valid_routine(char *line);
+int						valid_instruction(char *line);
 t_routine				*get_routines(char **input);
 int						get_param_size(char *param, char *cmd);
 int						get_dir_size(char *cmd);
 char					*int_to_bytecode(int val, int byte);
-int						valid_routine(char *line);
 int						get_bytecodes_count(char **split_line);
 void					generate_output(char **input, char **output);
+char					*get_parameters_bytecode(char **params, char *cmd, int line_pos);
 
 #endif

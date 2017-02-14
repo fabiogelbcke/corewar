@@ -9,6 +9,7 @@ SRC =	asm.c \
 	get_routines.c \
 	generate_output.c \
 	op.c \
+	generate_output_params.c \
 
 OBJ	= $(SRC:.c=.o)
 
