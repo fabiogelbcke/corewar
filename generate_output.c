@@ -20,7 +20,8 @@ char			*get_opcode(char *cmd)
 	while (i < 16)
 	{
 		if (!ft_strcmp(op_tab[i].name, cmd))
-			return (ft_strjoin(int_to_bytecode(op_tab[i].nbarg, ",")));
+			return (ft_strjoin(int_to_bytecode(op_tab[i].opcode, 1), ","));
+		i++;
 	}
 	//Throw error
 }
@@ -62,7 +63,7 @@ char			*get_coding_byte(char *line)
 	
 	//TODO: NO ACB FOR FORK, ZJMP AND LIVE
 	split_line = ft_split_spaces(line);
-	params = ft_strsplit(split_line[sl_len - 1], SEPARATOR_CHAR);
+	params = ft_strsplit(split_line[ft_strarr_len(split_line) - 1], SEPARATOR_CHAR);
 	i = 0;
 	binary = ft_strdup("");
 	while(params[i])

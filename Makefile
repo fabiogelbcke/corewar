@@ -7,6 +7,7 @@ SRC =	asm.c \
 	line_type.c \
 	utils.c \
 	get_routines.c \
+	generate_output.c \
 	op.c \
 
 OBJ	= $(SRC:.c=.o)

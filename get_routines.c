@@ -12,29 +12,7 @@
 
 #include "asm.h"
 
-int			get_bytecodes_count(char **split_line)
-{
-	int		count;
-	int		sl_len;
-	int		i;
-	char	**params;
 
-	sl_len = ft_strarr_len(split_line);
-	if (sl_len == 0)
-		return (0);
-	count = 2;
-	params = ft_strsplit(split_line[sl_len - 1], SEPARATOR_CHAR);
-	sl_len = ft_strarr_len(params);
-	if (sl_len == 0)
-		return (count);
-	i = 0;
-	while (params[i])
-	{
-		count += get_param_size(params[i], split_line[0]);
-		i++;
-	}
-	return (count);
-}
 
 t_routine	*create_routine(char *name, int pos)
 {

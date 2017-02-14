@@ -41,4 +41,8 @@ int				main(int argc, char **argv)
 	input[i] = NULL;
 	output = ft_memalloc(i * sizeof(char*));
 	generate_output(input, output);
+	i = 0;
+
+	while (output[i])
+		ft_putendl(output[i++]);
 }

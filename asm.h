@@ -42,7 +42,7 @@ typedef struct			s_op
 	char				*name;
 	unsigned int		nbarg;
 	char				args_type[MAX_ARGS_NUMBER];
-	unsigned char		opcode;
+	unsigned int		opcode;
 	unsigned int		nbcycles;
 	char				*comment;
 	char				param_coding;
