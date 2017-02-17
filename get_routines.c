@@ -24,13 +24,30 @@ t_routine	*create_routine(char *name, int pos)
 	return (new_rout);
 }
 
-t_routine	*get_routines(char **input)
+void			exit_bad_routine(t_routine *head, char **input)
 {
-	int		i;
-	t_routine *last;
-	t_routine *curr;
-	int		pos;
-	char	**split_line;
+	t_routine	*next;
+
+	while (head != NULL)
+	{
+		next = head->next;
+		free(head->name);
+		free(head);
+		head = next;
+	}
+	ft_putendl("Invalid or repeated label");
+	ft_free_strarr(input);
+	exit(1);
+}
+
+t_routine		*get_routines(char **input)
+{
+	int			i;
+	t_routine	*last;
+	t_routine	*curr;
+	int			pos;
+	char		**split_line;
+	char		*name;
 
 	i = 0;
 	last = NULL;
@@ -40,10 +57,14 @@ t_routine	*get_routines(char **input)
 		if (is_routine(input[i]))
 		{
 			split_line = ft_split_spaces(input[i]);
+			split_line[0][ft_strlen(split_line[0]) - 1] = '\0';
+			if (!valid_routine(split_line[0], last))
+				exit_bad_routine(last, input);
 			curr = create_routine(split_line[0], pos);
 			curr->next = last;
 			last = curr;
 			input[i] = ft_join_strarr(&split_line[1], ' ');
+			ft_free_strarr(split_line);
 		}
 		pos += get_bytecodes_count(ft_split_spaces(input[i]));
 		i++;

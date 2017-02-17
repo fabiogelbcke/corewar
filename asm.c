@@ -12,37 +12,63 @@
 
 #include "asm.h"
 
-int				main(int argc, char **argv)
+char			**get_input(char *filename)
 {
-	int			fd;
 	char		**input;
-	char		**output;
-	int			i;
 	int			total_size;
+	int			i;
+	int			fd;
 	
-	if (argc < 2)
-		return -1;
 	input = ft_memalloc(BUF_SIZE * sizeof(char*));
+	if (!input)
+		return (NULL);
 	total_size = BUF_SIZE;
 	i = 0;
-	fd = open(argv[1], O_RDONLY);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{		
+		free(input);
+		return (NULL);
+	}
 	while (++i)
 	{
 		if (ft_gnl(fd, &(input[i - 1])) == 0)
 			break;
 		if (i == total_size - 1)
 		{
-			input = ft_realloc(input, (total_size + BUF_SIZE) * sizeof(char*), total_size * sizeof(char*));
+			input = realloc(input, (total_size + BUF_SIZE) * sizeof(char*));
 			if (input == NULL)
-				return -1;
+				return (NULL);
 			total_size += BUF_SIZE;
 		}
 	}
 	input[i] = NULL;
-	output = ft_memalloc(i * sizeof(char*));
-	generate_output(input, output);
-	i = 0;
+	close(fd);
+	return (input);
+}
 
+int				main(int argc, char **argv)
+{
+	int			fd;
+	char		**input;
+	char		**output;
+	int			i;
+	
+
+	if (argc < 2)
+		return -1;
+	input = get_input(argv[1]);
+	if (!input)
+	{
+		perror(NULL);
+		exit(1);
+	}
+	output = generate_output(input, ft_strarr_len(input));
+	i = 0;
 	while (output[i])
 		ft_putendl(output[i++]);
+	//TODO: write to file
+	ft_free_strarr(input);
+	ft_free_strarr(output);
+	return (0);
 }

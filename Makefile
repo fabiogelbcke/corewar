@@ -10,6 +10,7 @@ SRC =	asm.c \
 	generate_output.c \
 	op.c \
 	generate_output_params.c \
+	validators_parameters.c \
 
 OBJ	= $(SRC:.c=.o)
 

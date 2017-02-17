@@ -17,9 +17,7 @@ int			is_comment(char *line)
 	return (!is_empty(line) && line[0] == COMMENT_CHAR);
 }
 
-int			is_instruction(char *line)
-{
-}
+
 
 int			is_name(char *line)
 {
@@ -52,4 +50,15 @@ int			is_routine(char *line)
 	first_word = split_line[0];
 	is_rout = is_rout && first_word[ft_strlen(first_word) - 1] == LABEL_CHAR;
 	return (is_rout);
+}
+
+int			is_instruction(char *line)
+{
+	int		is_inst;
+
+	is_inst = !is_empty(line) && !is_comment(line);
+	is_inst = is_inst && !is_name(line);
+	is_inst = is_inst && !is_initial_comment(line);
+	is_inst = is_inst && !is_routine(line);
+	return (is_inst);
 }

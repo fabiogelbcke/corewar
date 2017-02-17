@@ -22,7 +22,9 @@ int			get_bytecodes_count(char **split_line)
 	sl_len = ft_strarr_len(split_line);
 	if (sl_len == 0)
 		return (0);
-	count = 2;
+	count = 1;
+	if (has_acb(split_line[0]))
+		count += 1;
 	params = ft_strsplit(split_line[sl_len - 1], SEPARATOR_CHAR);
 	sl_len = ft_strarr_len(params);
 	if (sl_len == 0)
@@ -66,6 +68,8 @@ char		*int_to_bytecode(int val, int bytes)
 	int		size;
 	int		i;
 
+	if (val < 0)
+		return (int_to_bytecode(ft_pow(2, 8*bytes) + val, bytes));
 	size = 5 * bytes  - 1;
 	bytecode = malloc(sizeof(char) * size);
 	i = size - 1;
@@ -87,3 +91,10 @@ char		*int_to_bytecode(int val, int bytes)
 	return (bytecode);
 }
 
+int			has_acb(char *cmd)
+{
+	if (ft_strcmp(cmd, "fork") && ft_strcmp(cmd, "zjmp")
+		&& ft_strcmp(cmd, "live"))
+		return (1);
+	return (0);
+}

@@ -61,16 +61,17 @@ char			*bin_to_bytecode(char *bin)
 	return int_to_bytecode(dec, 1);
 }
 
-char			*get_coding_byte(char **params)
+char			*get_coding_byte(char **params, char *cmd)
 {
 	char		**split_line;
 	char		*binary;
 	int			i;
 	char		*separator;
 	
-	//TODO: NO ACB FOR FORK, ZJMP AND LIVE
 	i = 0;
 	binary = ft_strdup("");
+	if (!has_acb(cmd))
+		return (binary);
 	while(params[i])
 		binary = ft_strjoin(binary, param_code(params[i++]));
 	while (ft_strlen(binary) < 8)
@@ -80,35 +81,62 @@ char			*get_coding_byte(char **params)
 	return (ft_strjoin(bin_to_bytecode(binary), separator));
 }
 
-void			generate_line(char *input_line, char **line)
+char			*generate_line(char *input_line, t_routine *routines)
 {
 	char		**split_input;
 	char		*cmd;
 	char		**params;
 	static int	line_pos = 0;
+	char		*line;
 
 	split_input = ft_split_spaces(input_line);
 	cmd = split_input[0];
 	params = ft_strsplit(split_input[ft_strarr_len(split_input) - 1], SEPARATOR_CHAR);
-	*line = get_opcode(cmd);
-	*line = ft_strjoin(*line, get_coding_byte(params));
-	*line = ft_strjoin(*line, get_parameters_bytecode(params, cmd, line_pos));
+	line = get_opcode(cmd);
+	line = ft_strjoin(line, get_coding_byte(params, cmd));
+	line = ft_strjoin(line, get_parameters_bytecode(params, cmd, line_pos, routines));
 	line_pos += get_bytecodes_count(split_input);
+	return (line);
 }
 
-void			generate_output(char **input, char **output)
+void			exit_invalid_instruction(t_routine *head, char **input, char **output)
+{
+	t_routine	*next;
+
+	while (head != NULL)
+	{
+		next = head->next;
+		free(head->name);
+		free(head);
+		head = next;
+	}
+	ft_putendl("Invalid instruction");
+	ft_free_strarr(input);
+	ft_free_strarr(output);
+	exit(1);
+}
+
+char			**generate_output(char **input, int output_size)
 {
 	t_routine	*routines;
 	int			i;
 	int			j;
+	char		**output;
 
 	routines = get_routines(input);
 	i = 0;
 	j = 0;
+	output = ft_memalloc(output_size * sizeof(char));
 	while (input[i])
 	{
-		if (is_instruction(input[i]) && valid_instruction(input[i]))
-			generate_line(input[i], &output[j++]);
+		if (is_instruction(input[i]))
+		{
+			if (valid_instruction(input[i]))
+				output[j++] = generate_line(input[i], routines);
+			else
+				exit_invalid_instruction(routines, output, input);
+		}
 		i++;
 	}
+	return output;
 }

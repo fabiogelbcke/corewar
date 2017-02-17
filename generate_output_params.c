@@ -8,9 +8,25 @@
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
 /*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */ 
+/* ************************************************************************** */
 
 #include "asm.h"
+
+char		*get_label_param(char *param, int line_pos, int size, t_routine *routine)
+{
+	if (!routine)
+		return NULL;
+	while (ft_strcmp(routine->name, ft_strsplit(param, LABEL_CHAR)[1]))
+	{
+		if (!routine->next)
+		{
+			exit(1);
+			//TODO THROW ERROR
+		}
+		routine = routine->next;
+	}
+	return (int_to_bytecode(routine->pos - line_pos, size));
+}
 
 char		*get_registry_bytecode(char *param)
 {
@@ -20,13 +36,13 @@ char		*get_registry_bytecode(char *param)
 	return int_to_bytecode(val, 1);
 }
 
-char		*get_dir_bytecode(char *param, char *cmd, int line_pos)
+char		*get_dir_bytecode(char *param, char *cmd, int line_pos, t_routine *routines)
 {
 	int		val;
 
 	if (param[1] == ':')
 	{
-		return ft_strdup("oi");
+		return (get_label_param(param, line_pos, get_param_size(param, cmd), routines));
 	}
 	else
 	{
@@ -35,13 +51,13 @@ char		*get_dir_bytecode(char *param, char *cmd, int line_pos)
 	}
 }
 
-char		*get_ind_bytecode(char *param, char *cmd, int line_pos)
+char		*get_ind_bytecode(char *param, char *cmd, int line_pos, t_routine *routines)
 {
 	int		val;
 
 	if (param[0] == ':')
 	{
-		return ft_strdup("oi");
+		return (get_label_param(param, line_pos, get_param_size(param, cmd), routines));
 	}
 	else
 	{
@@ -50,17 +66,17 @@ char		*get_ind_bytecode(char *param, char *cmd, int line_pos)
 	}
 }
 
-char		*get_param_bc(char *param, char *cmd, int line_pos)
+char		*get_param_bc(char *param, char *cmd, int line_pos, t_routine *routines)
 {
 	if (param[0] == 'r')
 		return get_registry_bytecode(param);
 	else if (param[0] == DIRECT_CHAR)
-		return get_dir_bytecode(param, cmd, line_pos);
+		return get_dir_bytecode(param, cmd, line_pos, routines);
 	else
-		return get_ind_bytecode(param, cmd, line_pos);
+		return get_ind_bytecode(param, cmd, line_pos, routines);
 }
 
-char		*get_parameters_bytecode(char **params, char *cmd, int line_pos)
+char		*get_parameters_bytecode(char **params, char *cmd, int line_pos, t_routine *routines)
 {
 	char		*params_bytecode;
 	int			i;
@@ -72,7 +88,7 @@ char		*get_parameters_bytecode(char **params, char *cmd, int line_pos)
 	i = 0;
 	while (params[i])
 	{
-		params_bytecode = ft_strjoin(params_bytecode, get_param_bc(params[i], cmd, line_pos));
+		params_bytecode = ft_strjoin(params_bytecode, get_param_bc(params[i], cmd, line_pos, routines));
 		params_bytecode = ft_strjoin(params_bytecode, separator);
 		i++;
 	}
