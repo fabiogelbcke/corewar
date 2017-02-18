@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/18 17:11:04 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */ 
 
@@ -47,6 +47,31 @@ char			**get_input(char *filename)
 	return (input);
 }
 
+int				get_output_size(char **output)
+{
+	int			i;
+	char		**split;
+	int			size;
+	int			j;
+
+	i = 0;
+	size = 0;
+	while (output[i])
+	{
+		j = 0;
+		while (output[i][j])
+		{
+			if (output[i][j] == ',')
+				size++;
+			j++;
+		}
+		if (j > 0)
+			size++;
+		i++;
+	}
+	return size;
+}
+
 int				main(int argc, char **argv)
 {
 	char		**input;
@@ -63,18 +88,14 @@ int				main(int argc, char **argv)
 		exit(1);
 	}
 	header = get_header(input, &prog_start);
-	ft_putendl(header.prog_name);
-	ft_putendl(header.comment);
-	ft_putnbr(header.magic);
-	ft_putendl("");
 	if (prog_start == 0)
 	{
 		ft_putendl("Invalid header");
 		free(input);
 		exit(1);
 	}
-	output = generate_output(input, ft_strarr_len(input));
-	ft_free_strarr(input);
+	output = generate_output(&(input[prog_start]), ft_strarr_len(input));
+	header.prog_size = get_output_size(output);
 	print_to_file(output, argv[1], header);
 	ft_free_strarr(output);
 	return (0);

@@ -140,5 +140,6 @@ char			**generate_output(char **input, int output_size)
 		}
 		i++;
 	}
+	output[j] = NULL;
 	return output;
 }
