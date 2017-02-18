@@ -70,9 +70,9 @@ char		*int_to_bytecode(int val, int bytes)
 
 	if (val < 0)
 		return (int_to_bytecode(ft_pow(2, 8*bytes) + val, bytes));
-	size = 5 * bytes  - 1;
+	size = 5 * bytes;
 	bytecode = malloc(sizeof(char) * size);
-	i = size - 1;
+	i = size - 2;
 	while (i >= 0)
 	{
 		if ((i + 4) % 5 == 0)
@@ -88,6 +88,7 @@ char		*int_to_bytecode(int val, int bytes)
 		}
 		i--;
 	}
+	bytecode[size - 1] = 0;
 	return (bytecode);
 }
 

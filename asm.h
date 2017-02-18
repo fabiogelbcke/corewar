@@ -72,5 +72,6 @@ int						has_acb(char *cmd);
 int						valid_registry(char *reg);
 int						valid_dir_arg(char *dir);
 int						valid_ind_arg(char *ind);
+void					print_to_file(char **output, char *filename);
 
 #endif

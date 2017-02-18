@@ -78,7 +78,7 @@ char			*get_coding_byte(char **params, char *cmd)
 		binary = ft_strjoin(binary, "00");
 	separator = ft_strdup("\0\0");
 	separator[0] = SEPARATOR_CHAR;
-	return (ft_strjoin(bin_to_bytecode(binary), separator));
+	return (ft_strappend_free(bin_to_bytecode(binary), separator));
 }
 
 char			*generate_line(char *input_line, t_routine *routines)
@@ -93,9 +93,10 @@ char			*generate_line(char *input_line, t_routine *routines)
 	cmd = split_input[0];
 	params = ft_strsplit(split_input[ft_strarr_len(split_input) - 1], SEPARATOR_CHAR);
 	line = get_opcode(cmd);
-	line = ft_strjoin(line, get_coding_byte(params, cmd));
-	line = ft_strjoin(line, get_parameters_bytecode(params, cmd, line_pos, routines));
+	line = ft_strappend_free(line, get_coding_byte(params, cmd));
+	line = ft_strappend_free(line, get_parameters_bytecode(params, cmd, line_pos, routines));
 	line_pos += get_bytecodes_count(split_input);
+	ft_free_strarr(split_input);
 	return (line);
 }
 

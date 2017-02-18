@@ -46,8 +46,8 @@ char		*get_dir_bytecode(char *param, char *cmd, int line_pos, t_routine *routine
 	}
 	else
 	{
-		val = ft_atoi(&param[1]);
-		return int_to_bytecode(val, get_param_size(param, cmd));
+		val = atoi(&param[1]);
+		return (int_to_bytecode(val, get_param_size(param, cmd)));
 	}
 }
 
@@ -81,17 +81,21 @@ char		*get_parameters_bytecode(char **params, char *cmd, int line_pos, t_routine
 	char		*params_bytecode;
 	int			i;
 	char		*separator;
+	char		*old;
 
-	separator = ft_strdup("\0\0");
+	separator = ft_strdup(" ");
 	separator[0] = SEPARATOR_CHAR;
 	params_bytecode = ft_strdup("");
 	i = 0;
 	while (params[i])
 	{
 		params_bytecode = ft_strjoin(params_bytecode, get_param_bc(params[i], cmd, line_pos, routines));
+		old = params_bytecode;
 		params_bytecode = ft_strjoin(params_bytecode, separator);
+		free(old);
 		i++;
 	}
+	free(separator);
 	if (i > 0)
 		params_bytecode[ft_strlen(params_bytecode) - 1] = '\0';
 	return params_bytecode;

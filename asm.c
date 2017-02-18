@@ -69,6 +69,7 @@ int				main(int argc, char **argv)
 		ft_putendl(output[i++]);
 	//TODO: write to file
 	ft_free_strarr(input);
+	print_to_file(output, argv[1]);
 	ft_free_strarr(output);
 	return (0);
 }

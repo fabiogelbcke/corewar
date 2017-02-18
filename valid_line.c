@@ -143,5 +143,6 @@ int			valid_instruction(char *line)
 	params = ft_strsplit(split_line[ft_strarr_len(split_line) - 1], SEPARATOR_CHAR);
 	if (!valid_parameters(params, *instruction))
 		return (0);
+	ft_free_strarr(split_line);
 	return (1);
 }

@@ -11,6 +11,7 @@ SRC =	asm.c \
 	op.c \
 	generate_output_params.c \
 	validators_parameters.c \
+	print_to_file.c 
 
 OBJ	= $(SRC:.c=.o)
 
