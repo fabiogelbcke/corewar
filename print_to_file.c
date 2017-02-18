@@ -40,7 +40,7 @@ char			hex_to_char(char *hex)
 	return (c);
 }
 
-void			write_output(char **output, int fd)
+void			write_program(char **output, int fd)
 {
 	int			i;
 	int			j;
@@ -61,7 +61,12 @@ void			write_output(char **output, int fd)
 	}
 }
 
-void			print_to_file(char **output, char *filename)
+void			write_header(header_t header, int fd)
+{
+	
+}
+
+void			print_to_file(char **output, char *filename, header_t header)
 {
 	char		*out_name;
 	int			fd;
@@ -75,6 +80,7 @@ void			print_to_file(char **output, char *filename)
 		ft_putendl("Couldn't create output file");
 		exit(1);
 	}
-	write_output(output, fd);
+	write_header(header, fd);
+	write_program(output, fd);
 	close(fd);
 }

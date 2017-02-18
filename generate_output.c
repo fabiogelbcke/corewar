@@ -100,7 +100,7 @@ char			*generate_line(char *input_line, t_routine *routines)
 	return (line);
 }
 
-void			exit_invalid_instruction(t_routine *head, char **input, char **output)
+void			exit_invalid_instruction(t_routine *head, char **input, char **output, char *line)
 {
 	t_routine	*next;
 
@@ -111,6 +111,7 @@ void			exit_invalid_instruction(t_routine *head, char **input, char **output)
 		free(head);
 		head = next;
 	}
+	ft_putendl(line);
 	ft_putendl("Invalid instruction");
 	ft_free_strarr(input);
 	ft_free_strarr(output);
@@ -135,7 +136,7 @@ char			**generate_output(char **input, int output_size)
 			if (valid_instruction(input[i]))
 				output[j++] = generate_line(input[i], routines);
 			else
-				exit_invalid_instruction(routines, output, input);
+				exit_invalid_instruction(routines, output, input, input[i]);
 		}
 		i++;
 	}

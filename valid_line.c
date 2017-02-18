@@ -104,7 +104,9 @@ int			arg_number(char *param)
 	if (param[0] == 'r' && valid_registry(param))
 		return (T_REG);
 	else if (param[0] == DIRECT_CHAR && valid_dir_arg(param))
+	{
 		return (T_DIR);
+	}
 	else if ((ft_isnbr(param)
 			  || param[0] == LABEL_CHAR) && valid_ind_arg(param))
 		return (T_IND);
@@ -140,9 +142,12 @@ int			valid_instruction(char *line)
 	instruction = valid_instruction_name(split_line[0]);
 	if (instruction == NULL)
 		return (0);
+
 	params = ft_strsplit(split_line[ft_strarr_len(split_line) - 1], SEPARATOR_CHAR);
+
 	if (!valid_parameters(params, *instruction))
 		return (0);
+
 	ft_free_strarr(split_line);
 	return (1);
 }

@@ -18,7 +18,10 @@ int		valid_registry(char *reg)
 	int	val;
 
 	if (!reg || !reg[0] || reg[0] != 'r' || !ft_isnbr(&reg[1]))
+	{
+
 		return (0);
+	}
 	val = ft_atoi(&reg[1]);
 	return (val > 0 && val <= REG_NUMBER);
 }
@@ -44,7 +47,10 @@ int		valid_label(char *label)
 			j++;
 		}
 		if (!LABEL_CHARS[j])
+		{
+
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -52,7 +58,10 @@ int		valid_label(char *label)
 int		valid_dir_arg(char *dir)
 {
 	if (!dir || !dir[0] || !dir[1] || dir[0] != DIRECT_CHAR)
+	{
+
 		return (0);
+	}
 	if (dir[1] == LABEL_CHAR)
 		return (valid_label(&dir[1]));
 	return (ft_isnbr(&dir[1]));

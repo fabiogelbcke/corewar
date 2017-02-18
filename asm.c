@@ -49,11 +49,10 @@ char			**get_input(char *filename)
 
 int				main(int argc, char **argv)
 {
-	int			fd;
 	char		**input;
 	char		**output;
-	int			i;
-	
+	header_t	header;
+	int			prog_start;
 
 	if (argc < 2)
 		return -1;
@@ -63,13 +62,20 @@ int				main(int argc, char **argv)
 		perror(NULL);
 		exit(1);
 	}
+	header = get_header(input, &prog_start);
+	ft_putendl(header.prog_name);
+	ft_putendl(header.comment);
+	ft_putnbr(header.magic);
+	ft_putendl("");
+	if (prog_start == 0)
+	{
+		ft_putendl("Invalid header");
+		free(input);
+		exit(1);
+	}
 	output = generate_output(input, ft_strarr_len(input));
-	i = 0;
-	while (output[i])
-		ft_putendl(output[i++]);
-	//TODO: write to file
 	ft_free_strarr(input);
-	print_to_file(output, argv[1]);
+	print_to_file(output, argv[1], header);
 	ft_free_strarr(output);
 	return (0);
 }

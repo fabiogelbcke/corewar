@@ -21,12 +21,12 @@ int			is_comment(char *line)
 
 int			is_name(char *line)
 {
+	//TODO: SPLIT LINE, CHECK FIRST PART FOR NAME CMD STIRNG, SECOND FOR NAME. CREATE NAME VALIDATOR
 	char	**split_line;
 	if (is_empty(line))
 		return (0);
 	if (!ft_startswith(line, NAME_CMD_STRING))
 		return (0);
-	
 	if (ft_strlen(line) > ft_strlen(NAME_CMD_STRING) + PROG_NAME_LENGTH + 3)
 		return (0);
 }
