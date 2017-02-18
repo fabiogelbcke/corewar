@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/02/18 17:11:04 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */ 
 
@@ -49,7 +49,6 @@ char			**get_input(char *filename)
 
 int				main(int argc, char **argv)
 {
-	int			fd;
 	char		**input;
 	char		**output;
 	int			i;
@@ -64,10 +63,6 @@ int				main(int argc, char **argv)
 		exit(1);
 	}
 	output = generate_output(input, ft_strarr_len(input));
-	i = 0;
-	while (output[i])
-		ft_putendl(output[i++]);
-	//TODO: write to file
 	ft_free_strarr(input);
 	print_to_file(output, argv[1]);
 	ft_free_strarr(output);
