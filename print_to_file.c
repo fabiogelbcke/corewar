@@ -61,9 +61,43 @@ void			write_program(char **output, int fd)
 	}
 }
 
+void			print_header_int(int val, int fd)
+{
+	char		*str;
+	char		**split;
+	int			i;
+	
+	str = int_to_bytecode(val, sizeof(unsigned int));
+	split = ft_strsplit(str, ',');
+	free(str);
+	i = 0;
+	while (split[i])
+		ft_putchar_fd(hex_to_char(split[i++]), fd);
+	ft_free_strarr(split);
+}
+
 void			write_header(header_t header, int fd)
 {
+	int			i;
 	
+	print_header_int(header.magic, fd);
+	i = 0;
+	while (header.prog_name[i])
+		ft_putchar_fd(header.prog_name[i++], fd);
+	while (i < PROG_NAME_LENGTH + 4)
+	{
+		i++;
+		ft_putchar_fd(0, fd);
+	}
+	print_header_int(header.prog_size, fd);
+	i = 0;
+	while (header.comment[i])
+		ft_putchar_fd(header.comment[i++], fd);
+	while (i < COMMENT_LENGTH + 4)
+	{
+		i++;
+		ft_putchar_fd(0, fd);
+	}
 }
 
 void			print_to_file(char **output, char *filename, header_t header)
