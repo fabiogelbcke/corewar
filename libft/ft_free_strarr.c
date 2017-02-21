@@ -18,6 +18,10 @@ void	ft_free_strarr(char **strarr)
 
 	i = 0;
 	while (strarr && strarr[i])
-		free(strarr[i++]);
-	free(strarr);
+	{
+		free(strarr[i]);
+		i++;
+	}
+	if (strarr)
+		free(strarr);
 }

@@ -66,7 +66,7 @@ int						get_param_size(char *param, char *cmd);
 int						get_dir_size(char *cmd);
 char					*int_to_bytecode(int val, int byte);
 int						get_bytecodes_count(char **split_line);
-char					**generate_output(char **input, int output_size);
+char					**generate_output(char **input, int output_size, int prog_start);
 char					*get_parameters_bytecode(char **params, char *cmd, int line_pos, t_routine *routines);
 int						has_acb(char *cmd);
 int						valid_registry(char *reg);

@@ -121,12 +121,12 @@ void			exit_invalid_instruction(t_routine *head, char **input, char **output, ch
 	}
 	ft_putendl(line);
 	ft_putendl("Invalid instruction");
-	ft_free_strarr(input);
 	ft_free_strarr(output);
+	ft_free_strarr(input);
 	exit(1);
 }
 
-char			**generate_output(char **input, int output_size)
+char			**generate_output(char **input, int output_size, int prog_start)
 {
 	t_routine	*routines;
 	int			i;
@@ -134,7 +134,7 @@ char			**generate_output(char **input, int output_size)
 	char		**output;
 
 	routines = get_routines(input);
-	i = 0;
+	i = prog_start;
 	j = 0;
 	output = ft_memalloc(output_size * sizeof(char));
 	while (input[i])
