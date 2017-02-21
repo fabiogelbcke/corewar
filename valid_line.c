@@ -101,14 +101,11 @@ t_op		*valid_instruction_name(char *name)
 
 int			arg_number(char *param)
 {
-	if (param[0] == 'r' && valid_registry(param))
+	if (valid_registry(param))
 		return (T_REG);
-	else if (param[0] == DIRECT_CHAR && valid_dir_arg(param))
-	{
+	else if (valid_dir_arg(param))
 		return (T_DIR);
-	}
-	else if ((ft_isnbr(param)
-			  || param[0] == LABEL_CHAR) && valid_ind_arg(param))
+	else if (valid_ind_arg(param))
 		return (T_IND);
 	return (0);
 }
