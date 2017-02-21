@@ -33,7 +33,6 @@ char			hex_to_char(char *hex)
 {
 	char		c;
 
-	ft_putendl(hex);
 	c = 0;
 	c += (hex[3] > '9') ? hex[3] - 87 : hex[3] - 48;
 	c += (hex[2] > '9') ? 16 * (hex[2] - 87) : 16 * (hex[2] - 48);

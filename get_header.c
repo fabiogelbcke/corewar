@@ -12,15 +12,21 @@
 
 #include "asm.h"
 
-char				*get_name_comment(char *line)
+char				*get_name_comment(char *line, int type)
 {
 	char			*nc;
-	char			**split_line;
+	char			*tmp;
+	int				i;
 
-	split_line = ft_split_spaces(line);
-	nc = malloc(sizeof(char) * ft_strlen(split_line[1]));
-	nc = ft_strcpy(nc, &(split_line[1][1]));
-	nc[ft_strlen(nc) - 1] = 0;
+	if (type == 1)
+		i = ft_strlen(NAME_CMD_STRING);
+	else
+		i = ft_strlen(COMMENT_CMD_STRING);
+	tmp = ft_strtrim(&(line[i]));
+	tmp[ft_strlen(tmp) - 1] = 0;
+	nc = malloc(sizeof(char) * ft_strlen(tmp));
+	nc = ft_strcpy(nc, &(tmp[1]));
+	free(tmp);
 	return (nc);
 }
 
@@ -66,12 +72,12 @@ header_t			get_header(char **input, int *prog_start)
 			i++;
 		else if (is_name(input[i]) && (done & 1) == 0)
 		{
-			ft_strcpy(header.prog_name, get_name_comment(input[i]));
+			ft_strcpy(header.prog_name, get_name_comment(input[i], 1));
 			done += 1;
 		}
 		else if (is_initial_comment(input[i]) && ((done & 2) == 0))
 		{
-			ft_strcpy(header.comment, get_name_comment(input[i]));
+			ft_strcpy(header.comment, get_name_comment(input[i], 2));
 			done += 2;
 		}
 		else

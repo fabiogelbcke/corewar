@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   generate_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,16 +17,18 @@ char			*get_opcode(char *cmd)
 	int			i;
 	char		*opcode;
 	char		*separator;
+	char		*res;
 
 	i = 0;
-	separator = ft_strdup("\0\0");
+	separator = ft_strdup("a");
 	separator[0] = SEPARATOR_CHAR;
 	while (i < 16)
 	{
 		if (!ft_strcmp(op_tab[i].name, cmd))
 		{
 			opcode = int_to_bytecode(op_tab[i].opcode, 1);
-			return (ft_strjoin(opcode,  separator));
+			res = ft_strappend_free(opcode, separator);
+			return (res);
 		}
 		i++;
 	}
@@ -36,11 +38,11 @@ char			*get_opcode(char *cmd)
 char			*param_code(char *param)
 {
 	if (param[0] == 'r')
-		return (ft_strdup("01"));
+		return ("01");
 	else if (param[0] == DIRECT_CHAR)
-		return (ft_strdup("10"));
+		return ("10");
 	else
-		return (ft_strdup("11"));
+		return ("11");
 }
 
 char			*bin_to_bytecode(char *bin)
@@ -76,10 +78,12 @@ char			*get_coding_byte(char **params, char *cmd)
 		binary = ft_strjoin(binary, param_code(params[i++]));
 	while (ft_strlen(binary) < 8)
 		binary = ft_strjoin(binary, "00");
-	separator = ft_strdup("\0\0");
+	separator = ft_strdup("a");
 	separator[0] = SEPARATOR_CHAR;
 	return (ft_strappend_free(bin_to_bytecode(binary), separator));
 }
+
+
 
 char			*generate_line(char *input_line, t_routine *routines)
 {
@@ -88,15 +92,19 @@ char			*generate_line(char *input_line, t_routine *routines)
 	char		**params;
 	static int	line_pos = 0;
 	char		*line;
+	char		**awe;
+	int			i;
 
 	split_input = ft_split_spaces(input_line);
 	cmd = split_input[0];
-	params = ft_strsplit(split_input[ft_strarr_len(split_input) - 1], SEPARATOR_CHAR);
+	awe = ft_strsplit(split_input[ft_strarr_len(split_input) - 1], SEPARATOR_CHAR);
+	params = get_params(split_input);
 	line = get_opcode(cmd);
 	line = ft_strappend_free(line, get_coding_byte(params, cmd));
 	line = ft_strappend_free(line, get_parameters_bytecode(params, cmd, line_pos, routines));
 	line_pos += get_bytecodes_count(split_input);
 	ft_free_strarr(split_input);
+	ft_free_strarr(params);
 	return (line);
 }
 

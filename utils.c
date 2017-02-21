@@ -25,7 +25,7 @@ int			get_bytecodes_count(char **split_line)
 	count = 1;
 	if (has_acb(split_line[0]))
 		count += 1;
-	params = ft_strsplit(split_line[sl_len - 1], SEPARATOR_CHAR);
+	params = get_params(split_line);
 	sl_len = ft_strarr_len(params);
 	if (sl_len == 0)
 		return (count);
@@ -35,6 +35,7 @@ int			get_bytecodes_count(char **split_line)
 		count += get_param_size(params[i], split_line[0]);
 		i++;
 	}
+	free(params);
 	return (count);
 }
 
@@ -98,4 +99,25 @@ int			has_acb(char *cmd)
 		&& ft_strcmp(cmd, "live"))
 		return (1);
 	return (0);
+}
+
+char			**get_params(char **split_input)
+{
+	int			i;
+	char		*tmp;
+	char		**params;
+
+	tmp = ft_join_strarr(&(split_input[1]), ' ');
+	params = ft_strsplit(tmp, SEPARATOR_CHAR);
+	free(tmp);
+	i = 0;
+	while (params[i])
+	{
+		tmp = ft_strtrim(params[i]);
+		free(params[i]);
+		params[i] = tmp;
+		i++;
+	}
+	i = 0;
+	return params;
 }

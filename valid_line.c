@@ -142,12 +142,10 @@ int			valid_instruction(char *line)
 	instruction = valid_instruction_name(split_line[0]);
 	if (instruction == NULL)
 		return (0);
-
-	params = ft_strsplit(split_line[ft_strarr_len(split_line) - 1], SEPARATOR_CHAR);
-
+	params = get_params(split_line);
 	if (!valid_parameters(params, *instruction))
 		return (0);
-
 	ft_free_strarr(split_line);
+	ft_free_strarr(params);
 	return (1);
 }
