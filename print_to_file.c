@@ -106,14 +106,18 @@ void			print_to_file(char **output, char *filename, header_t header)
 
 	out_name = get_file_name(filename);
 	fd = open(out_name, O_WRONLY|O_CREAT|O_TRUNC);
-	free(out_name);
+
 	if (fd == -1)
 	{
 		ft_free_strarr(output);
 		ft_putendl("Couldn't create output file");
 		exit(1);
 	}
+
 	write_header(header, fd);
 	write_program(output, fd);
+	ft_putstr("Printing to file ");
+	ft_putendl(out_name);
+	free(out_name);
 	close(fd);
 }
