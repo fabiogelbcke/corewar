@@ -105,12 +105,12 @@ void			print_to_file(char **output, char *filename, header_t header)
 	int			fd;
 
 	out_name = get_file_name(filename);
-	fd = open(out_name, O_WRONLY|O_CREAT|O_TRUNC);
-
+	fd = open(out_name, O_WRONLY|O_CREAT|O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
 	if (fd == -1)
 	{
 		ft_free_strarr(output);
-		ft_putendl("Couldn't create output file");
+		perror(out_name);
+		free(out_name);
 		exit(1);
 	}
 

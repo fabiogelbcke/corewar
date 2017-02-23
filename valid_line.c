@@ -12,35 +12,54 @@
 
 #include "asm.h"
 
+
 int			valid_initial_comment(char *line)
 {
-	char	**split_line;
+	int		i;
+	char	*tmp;
 
-	if (!is_initial_comment(line))
+	if (!line)
 		return (0);
-	split_line = ft_split_spaces(line);
-	if (ft_strarr_len(split_line) != 2)
+	line = ft_strtrim(line);
+	if (!ft_startswith(line, COMMENT_CMD_STRING))
+	{
+		free(line);
 		return (0);
-	if (ft_strlen(split_line[1]) > COMMENT_LENGTH + 2)
+	}
+	i = ft_strlen(COMMENT_CMD_STRING);
+	tmp = ft_strtrim(&(line[i]));
+	free(line);
+	if (ft_strlen(tmp) < 2 || tmp[0] != '"' || tmp[ft_strlen(tmp) - 1] != '"'
+		|| ft_strlen(tmp) > 2 + COMMENT_LENGTH)
+	{
+		free(tmp);
 		return (0);
-	if (split_line[1][0] != '"' || split_line[1][ft_strlen(split_line[1] - 1)])
-		return (0);
+	}
 	return (1);
 }
 
 int			valid_name(char *line)
 {
-	char	**split_line;
+	int		i;
+	char	*tmp;
 
-	if (!is_name(line))
+	if (!line)
 		return (0);
-	split_line = ft_split_spaces(line);
-	if (ft_strarr_len(split_line) != 2)
+	line = ft_strtrim(line);
+	if (!ft_startswith(line, NAME_CMD_STRING))
+	{
+		free(line);
 		return (0);
-	if (ft_strlen(split_line[1]) > PROG_NAME_LENGTH + 2)
+	}
+	i = ft_strlen(NAME_CMD_STRING);
+	tmp = ft_strtrim(&(line[i]));
+	free(line);
+	if (ft_strlen(tmp) < 2 || tmp[0] != '"' || tmp[ft_strlen(tmp) - 1] != '"'
+		|| ft_strlen(tmp) > 2 + PROG_NAME_LENGTH)
+	{
+		free(tmp);
 		return (0);
-	if (split_line[1][0] != '"' || split_line[1][ft_strlen(split_line[1] - 1)])
-		return (0);
+	}
 	return (1);
 }
 
