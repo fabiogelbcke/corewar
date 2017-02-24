@@ -45,3 +45,5 @@ flycheck_*.el
 *.a
 *.out
 *.txt
+*.s
+*.cor

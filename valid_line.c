@@ -148,6 +148,8 @@ int			valid_parameters(char **params, t_op instruction)
 		}
 		i++;
 	}
+	if (i != ft_strlen(instruction.args_type) || params[i] != NULL)
+		return (0);
 	return (1);
 }
 
