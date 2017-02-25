@@ -81,7 +81,6 @@ int		ft_gnl(int const fd, char **line);
 void	*ft_realloc(void *ptr, size_t size, size_t prev_size);
 char	*ft_join_strarr(char **strarr, char separator);
 int		ft_startswith(char *str, char *sub);
-int		ft_pow(int base, int exponent);
 void	ft_free_strarr(char **strarr);
 char	*ft_strappend_free(char *str1, char *str2);
 

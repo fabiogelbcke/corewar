@@ -12,6 +12,26 @@
 
 #include "asm.h"
 
+long int		ft_pow(int base, int exponent)
+{
+	long int	res;
+	int	i;
+
+	res = 1;
+	i = 0;
+	while (i < exponent)
+	{
+		if (LONG_MAX / base >= res)
+			res = res * base;
+		else
+		{
+			return (0);
+		}
+		i++;
+	}
+	return res;
+}
+
 int			get_bytecodes_count(char **split_line)
 {
 	int		count;
@@ -63,7 +83,7 @@ int			get_param_size(char *param, char *cmd)
 		return 2;
 }
 
-char		*int_to_bytecode(int val, int bytes)
+char		*int_to_bytecode(long int val, int bytes)
 {
 	char	*bytecode;
 	int		size;

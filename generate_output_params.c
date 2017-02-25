@@ -25,6 +25,7 @@ char		*get_label_param(char *param, int line_pos, int size, t_routine *routine)
 		}
 		routine = routine->next;
 	}
+
 	return (int_to_bytecode(routine->pos - line_pos, size));
 }
 

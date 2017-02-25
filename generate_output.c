@@ -83,8 +83,6 @@ char			*get_coding_byte(char **params, char *cmd)
 	return (ft_strappend_free(bin_to_bytecode(binary), separator));
 }
 
-
-
 char			*generate_line(char *input_line, t_routine *routines)
 {
 	char		**split_input;

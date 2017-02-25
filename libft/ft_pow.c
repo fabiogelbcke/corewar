@@ -12,20 +12,33 @@
 
 #include "libft.h"
 
-int		ft_pow(int base, int exponent)
+long int		ft_pow(int base, int exponent)
 {
-	int	res;
+	long int	res;
 	int	i;
 
 	res = 1;
 	i = 0;
+	ft_putnbr(base);
+	ft_putendl("");
+	ft_putnbr(exponent);
+	ft_putendl("");
 	while (i < exponent)
 	{
-		if (INT_MAX / base > res)
+		ft_putstr("i = ");
+		ft_putnbr(i);
+		ft_putendl("");
+		if (LONG_MAX / base >= res)
 			res = res * base;
 		else
+		{
+			ft_putendl("ops");
 			return (0);
+		}
 		i++;
 	}
+	ft_putendl ("result:");
+	ft_putnbr(res);
+	ft_putendl("");
 	return res;
 }

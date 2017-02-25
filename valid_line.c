@@ -138,12 +138,10 @@ int			valid_parameters(char **params, t_op instruction)
 	{
 		if (i == MAX_ARGS_NUMBER)
 		{
-			ft_putendl(params[i]);
 			return (0);
 		}
 		if ((arg_number(params[i]) & instruction.args_type[i]) == 0)
 		{
-			ft_putendl(params[i]);
 			return (0);
 		}
 		i++;
