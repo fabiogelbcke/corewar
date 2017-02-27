@@ -90,7 +90,9 @@ char		*get_parameters_bytecode(char **params, char *cmd, int line_pos, t_routine
 	i = 0;
 	while (params[i])
 	{
+		old = params_bytecode;
 		params_bytecode = ft_strjoin(params_bytecode, get_param_bc(params[i], cmd, line_pos, routines));
+		free(old);
 		old = params_bytecode;
 		params_bytecode = ft_strjoin(params_bytecode, separator);
 		free(old);

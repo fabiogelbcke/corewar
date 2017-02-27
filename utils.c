@@ -32,6 +32,30 @@ long int		ft_pow(int base, int exponent)
 	return res;
 }
 
+int			get_dir_size(char *cmd)
+{
+	int i;
+
+	i = 0;
+	while (i < 16)
+	{
+		if (!ft_strcmp(op_tab[i].name, cmd))
+			return (op_tab[i].dir_size == 0 ? 4 : 2);
+		i++;
+	}
+	return 0;
+}
+
+int			get_param_size(char *param, char *cmd)
+{
+	if (param[0] == 'r')
+		return 1;
+	else if (param[0] == DIRECT_CHAR)
+		return get_dir_size(cmd);
+	else
+		return 2;
+}
+
 int			get_bytecodes_count(char **split_line)
 {
 	int		count;
@@ -57,30 +81,6 @@ int			get_bytecodes_count(char **split_line)
 	}
 	free(params);
 	return (count);
-}
-
-int			get_dir_size(char *cmd)
-{
-	int i;
-
-	i = 0;
-	while (i < 16)
-	{
-		if (!ft_strcmp(op_tab[i].name, cmd))
-			return (op_tab[i].dir_size == 0 ? 4 : 2);
-		i++;
-	}
-	return 0;
-}
-
-int			get_param_size(char *param, char *cmd)
-{
-	if (param[0] == 'r')
-		return 1;
-	else if (param[0] == DIRECT_CHAR)
-		return get_dir_size(cmd);
-	else
-		return 2;
 }
 
 char		*int_to_bytecode(long int val, int bytes)

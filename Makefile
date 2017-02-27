@@ -1,6 +1,6 @@
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 SRC =	asm.c \
 	valid_line.c \

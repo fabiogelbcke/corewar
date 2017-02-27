@@ -16,6 +16,8 @@ char		*ft_strappend_free(char *str1, char *str2)
 {
 	char	*newstr;
 
+	if (!str1 || !str2)
+		return (NULL);
 	newstr = ft_strjoin(str1, str2);
 	free(str1);
 	free(str2);
