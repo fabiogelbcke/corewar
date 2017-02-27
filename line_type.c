@@ -14,14 +14,24 @@ int			is_empty(char *line)
 
 int			is_comment(char *line)
 {
-	return (!is_empty(line) && line[0] == COMMENT_CHAR);
+		char	**split_line;
+
+	if (is_empty(line))
+		return (0);
+	split_line = ft_split_spaces(line);
+	if (ft_strcmp(split_line[0], COMMENT_CMD_STRING))
+	{
+		ft_free_strarr(split_line);
+		return (0);
+	}
+	ft_free_strarr(split_line);
+	return (1);
 }
 
 
 
 int			is_name(char *line)
 {
-	//TODO: SPLIT LINE, CHECK FIRST PART FOR NAME CMD STIRNG, SECOND FOR NAME. CREATE NAME VALIDATOR
 	char	**split_line;
 
 	if (is_empty(line))
@@ -33,7 +43,7 @@ int			is_name(char *line)
 		return (0);
 	}
 	ft_free_strarr(split_line);
-	return(1);
+	return (1);
 }
 
 int			is_initial_comment(char *line)
@@ -47,7 +57,6 @@ int			is_routine(char *line)
 	char	**split_line;
 	char	*first_word;
 
-	//TODO: CHECK IF NAME IS LABEL_CHARS
 	is_rout = !is_empty(line) && !is_comment(line);
 	is_rout = is_rout && !is_name(line);
 	is_rout = is_rout && !is_initial_comment(line);

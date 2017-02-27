@@ -32,7 +32,9 @@ char			*get_opcode(char *cmd)
 		}
 		i++;
 	}
-	//Throw error
+	ft_putstr("Couldn't find opcode for ");
+	ft_putendl(cmd);
+	exit(1);
 }
 
 char			*param_code(char *param)
@@ -43,24 +45,6 @@ char			*param_code(char *param)
 		return ("10");
 	else
 		return ("11");
-}
-
-char			*bin_to_bytecode(char *bin)
-{
-	int			dec;
-	int			i;
-	int			mult;
-
-	dec = 0;
-	i = ft_strlen(bin) - 1;
-	mult = 1;
-	while (i >= 0)
-	{
-		dec += (bin[i] - 48) * mult;
-		mult = mult * 2;
-		i--;
-	}
-	return int_to_bytecode(dec, 1);
 }
 
 char			*get_coding_byte(char **params, char *cmd)
@@ -90,12 +74,9 @@ char			*generate_line(char *input_line, t_routine *routines)
 	char		**params;
 	static int	line_pos = 0;
 	char		*line;
-	char		**awe;
-	int			i;
 
 	split_input = ft_split_spaces(input_line);
 	cmd = split_input[0];
-	awe = ft_strsplit(split_input[ft_strarr_len(split_input) - 1], SEPARATOR_CHAR);
 	params = get_params(split_input);
 	line = get_opcode(cmd);
 	line = ft_strappend_free(line, get_coding_byte(params, cmd));
@@ -106,23 +87,6 @@ char			*generate_line(char *input_line, t_routine *routines)
 	return (line);
 }
 
-void			exit_invalid_instruction(t_routine *head, char **input, char **output, char *line)
-{
-	t_routine	*next;
-
-	while (head != NULL)
-	{
-		next = head->next;
-		free(head->name);
-		free(head);
-		head = next;
-	}
-	ft_putendl(line);
-	ft_putendl("Invalid instruction");
-	ft_free_strarr(output);
-	ft_free_strarr(input);
-	exit(1);
-}
 
 char			**generate_output(char **input, int output_size, int prog_start)
 {
