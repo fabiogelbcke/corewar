@@ -6,11 +6,11 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/19 09:34:28 by fschuber          #+#    #+#             */
-/*   Updated: 2014/12/16 20:42:00 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:55:15 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 static int	numberofwords(char const *s)
 {
