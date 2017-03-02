@@ -155,6 +155,8 @@ int			valid_instruction(char *line)
 	if (!is_instruction(line))
 		return (0);
 	split_line = ft_split_spaces(line);
+	if (split_line == NULL)
+		return (0);
 	instruction = valid_instruction_name(split_line[0]);
 	if (instruction == NULL)
 		return (0);

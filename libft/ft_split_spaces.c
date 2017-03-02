@@ -31,7 +31,7 @@ static int	numberofwords(char const *s)
 
 static int	getsize(int *i, const char *s, int size)
 {
-	while (s[*i] == ' ' || s[*i] == '\t')
+	while (s[*i] && (s[*i] == ' ' || s[*i] == '\t'))
 		(*i)++;
 	while (s[*i + size] != ' ' && s[*i + size] != '\t' && s[*i + size])
 		size++;
