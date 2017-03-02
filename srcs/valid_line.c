@@ -84,7 +84,7 @@ int			valid_routine(char *line, t_routine *routines)
 	i = 0;
 	if (ft_strarr_len(split_line) == 0)
 		return (0);
-	while (i < ft_strlen(split_line[0]))
+	while (i < (int)ft_strlen(split_line[0]))
 	{
 		j = 0;
 		while (LABEL_CHARS[j])
@@ -146,7 +146,7 @@ int			valid_parameters(char **params, t_op instruction)
 		}
 		i++;
 	}
-	if (i != ft_strlen(instruction.args_type) || params[i] != NULL)
+	if (i != (int)ft_strlen(instruction.args_type) || params[i] != NULL)
 		return (0);
 	return (1);
 }
@@ -154,7 +154,6 @@ int			valid_parameters(char **params, t_op instruction)
 int			valid_instruction(char *line)
 {
 	char	**split_line;
-	int		i;
 	char	**params;
 	t_op	*instruction;
 	

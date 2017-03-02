@@ -47,7 +47,6 @@ t_routine		*get_routines(char **input)
 	t_routine	*curr;
 	int			pos;
 	char		**split_line;
-	char		*name;
 
 	i = 0;
 	last = NULL;

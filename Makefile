@@ -1,41 +1,59 @@
 CC = gcc
-
 FLAGS = -Wall -Wextra -Werror
+ASM = asm
+FILES =    asm.c \
+    valid_line.c \
+    line_type.c \
+    utils.c \
+    utils2.c \
+    get_routines.c \
+    generate_output.c \
+    op.c \
+    generate_output_params.c \
+    validators_parameters.c \
+    print_to_file.c \
+    get_header.c \
+    exit_error.c
 
-SRC =	asm.c \
-	valid_line.c \
-	line_type.c \
-	utils.c \
-	utils2.c \
-	get_routines.c \
-	generate_output.c \
-	op.c \
-	generate_output_params.c \
-	validators_parameters.c \
-	print_to_file.c \
-	get_header.c \
-	exit_error.c
+F_DIR = srcs
+SRCS = $(addprefix $(F_DIR)/, $(FILES))
 
-OBJ	= $(SRC:.c=.o)
+O_DIR = objs
+OBJS = $(addprefix $(O_DIR)/, $(FILES:.c=.o))
 
-LIB 	= libft/libft.a
+HEADER = asm.h op.h
+H_DIR = header
+INC = $(addprefix $(H_DIR)/, $(HEADER))
+INCLUDE = -I $(L_DIR) -I $(H_DIR)
 
-NAME = asm
+L_DIR = libft
+LIB = libft/libft.a
+LIBLINK = -L ./$(L_DIR) -lft
 
-all:		$(NAME)
+all: libft $(ASM)
 
-$(NAME):	$(OBJ)
-	$(MAKE) -C ./libft
-	$(CC) -o $(NAME) $(FLAGS) $(OBJ) $(LIB)
+$(ASM):    $(OBJS) $(LIBFT)
+	$(CC) $(FLAGS) -o $@ $(OBJS) $(LIBLINK)
+	@echo Project : $(ASM)
+	@echo "\t"- Compiler : $(CC)
+	@echo "\t"- Flags : $(FLAGS)
+
+$(O_DIR)/%.o: $(F_DIR)/%.c $(INC)
+	@mkdir -p $(O_DIR)
+	@$(CC) $(FLAGS) $(INCLUDE) -c -o $@ $<
+	@echo "Creation de "$@" OK"
+
+libft:
+	@make -C $(L_DIR)
 
 clean:
-	rm -f $(OBJ)
-	$(MAKE) -C ./libft clean
+	@rm -rf $(O_DIR)
+	@$(MAKE) -C ./libft clean
 
-fclean:	clean
-	rm -f $(NAME)
-	$(MAKE) -C ./libft fclean
+fclean:    clean
+	@rm -f $(ASM)
+	@$(MAKE) -C ./libft fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft

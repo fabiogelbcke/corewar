@@ -49,7 +49,6 @@ char			*param_code(char *param)
 
 char			*get_coding_byte(char **params, char *cmd)
 {
-	char		**split_line;
 	char		*binary;
 	int			i;
 	char		*separator;

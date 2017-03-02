@@ -50,7 +50,6 @@ char			**get_input(char *filename)
 int				get_output_size(char **output)
 {
 	int			i;
-	char		**split;
 	int			size;
 	int			j;
 

@@ -14,7 +14,6 @@
 
 int		valid_registry(char *reg)
 {
-	int	i;
 	int	val;
 
 	if (!reg || !reg[0] || reg[0] != 'r' || !ft_isnbr(&reg[1]))
