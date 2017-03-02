@@ -53,23 +53,6 @@ int			is_name(char *line)
 		return (0);
 	return (1);
 }
-
-/*
-int			is_name(char *line)
-{
-	char	**split_line;
-
-	if (is_empty(line))
-		return (0);
-	split_line = ft_split_spaces(line);
-	if (ft_strcmp(split_line[0], NAME_CMD_STRING))
-	{
-		ft_free_strarr(split_line);
-		return (0);
-	}
-	ft_free_strarr(split_line);
-	return (1);
-	}*/
 	
 int			is_initial_comment(char *line)
 {

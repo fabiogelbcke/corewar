@@ -96,6 +96,7 @@ char		*get_parameters_bytecode(char **params, char *cmd,
 	int			i;
 	char		*separator;
 	char		*old;
+	char		*tmp;
 
 	separator = ft_strdup(" ");
 	separator[0] = SEPARATOR_CHAR;
@@ -104,8 +105,9 @@ char		*get_parameters_bytecode(char **params, char *cmd,
 	while (params[i])
 	{
 		old = params_bytecode;
-		params_bytecode = ft_strjoin(params_bytecode,
-						get_param_bc(params[i], cmd, line_pos, routines));
+		tmp = get_param_bc(params[i], cmd, line_pos, routines);
+		params_bytecode = ft_strjoin(params_bytecode, tmp);
+		free(tmp);
 		free(old);
 		old = params_bytecode;
 		params_bytecode = ft_strjoin(params_bytecode, separator);

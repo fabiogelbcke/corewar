@@ -64,7 +64,11 @@ t_routine		*get_routines(char **input)
 			ft_free_strarr(split_line);
 		}
 		if (is_instruction(input[i]))
-			pos += get_bytecodes_count(ft_split_spaces(input[i]));
+		{
+			split_line = ft_split_spaces(input[i]);
+			pos += get_bytecodes_count(split_line);
+			ft_free_strarr(split_line);
+		}
 		i++;
 	}
 	return (curr);

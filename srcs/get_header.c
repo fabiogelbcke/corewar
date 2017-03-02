@@ -57,6 +57,7 @@ t_header			get_header(char **input, int *prog_start)
 	t_header		header;
 	int				i;
 	int				done;
+	char			*tmp;
 
 	i = 0;
 	done = 0;
@@ -70,13 +71,17 @@ t_header			get_header(char **input, int *prog_start)
 		}
 		else if (is_name(input[i]) && (done & 1) == 0 && valid_name(input[i]))
 		{
-			ft_strcpy(header.prog_name, get_name_comment(input[i], 1));
+			tmp = get_name_comment(input[i], 1);
+			ft_strcpy(header.prog_name, tmp);
+			free(tmp);
 			done += 1;
 		}
 		else if (is_initial_comment(input[i]) && ((done & 2) == 0)
 					&& valid_initial_comment(input[i]))
 		{
-			ft_strcpy(header.comment, get_name_comment(input[i], 2));
+			tmp = get_name_comment(input[i], 1);
+			ft_strcpy(header.comment, tmp);
+			free(tmp);
 			done += 2;
 		}
 		else if (!is_empty(input[i]) && !is_comment(input[i]))
