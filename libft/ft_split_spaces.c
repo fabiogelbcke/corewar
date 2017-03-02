@@ -49,7 +49,7 @@ char		**ft_split_spaces(char const *s)
 	k = 0;
 	if (!s)
 		return (NULL);
-	table = (char **)malloc(sizeof(char*) * (numberofwords(s) + 1));
+	table = ft_memalloc(sizeof(char*) * (numberofwords(s) + 1));
 	if (!table)
 		return (NULL);
 	while (k < numberofwords(s))
