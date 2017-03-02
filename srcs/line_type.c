@@ -20,7 +20,11 @@ int			is_empty(char *line)
 		return (1);
 	split_line = ft_split_spaces(line);
 	if (ft_strarr_len(split_line) == 0)
+	{
+		ft_free_strarr(split_line);
 		return (1);
+	}
+	ft_free_strarr(split_line);
 	return (0);
 }
 
@@ -73,6 +77,7 @@ int			is_routine(char *line)
 	split_line = ft_split_spaces(line);
 	first_word = split_line[0];
 	is_rout = is_rout && first_word[ft_strlen(first_word) - 1] == LABEL_CHAR;
+	ft_free_strarr(split_line);
 	return (is_rout);
 }
 
