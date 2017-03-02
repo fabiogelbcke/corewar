@@ -29,7 +29,7 @@ char		*ft_join_strarr(char **strarr, char separator)
 		size += j + 1;
 		i++;
 	}
-	joined = ft_memalloc(sizeof(char) * size);
+	joined = ft_memalloc(sizeof(char) * size + 1);
 	size = 0;
 	i = 0;
 	while (strarr[i])

@@ -97,7 +97,7 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	routines = get_routines(input);
 	i = prog_start;
 	j = 0;
-	output = ft_memalloc(output_size * sizeof(char));
+	output = ft_memalloc(output_size * sizeof(char*) + 1);
 	while (input[i])
 	{
 		if (is_instruction(input[i]))

@@ -100,6 +100,7 @@ int				main(int argc, char **argv)
 		exit(1);
 	}
 	output = generate_output(input, ft_strarr_len(input), prog_start);
+	ft_free_strarr(input);
 	header.prog_size = get_output_size(output);
 	print_to_file(output, argv[1], header);
 	ft_free_strarr(output);
