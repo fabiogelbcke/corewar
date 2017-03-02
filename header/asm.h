@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 13:46:20 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:37:32 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct			s_instr
 	char				*name;
 	char				*opcode;
 	int					acb;
-	
 }						t_instr;
 
 typedef struct			s_op
@@ -66,17 +65,21 @@ int						get_param_size(char *param, char *cmd);
 int						get_dir_size(char *cmd);
 char					*int_to_bytecode(long int val, int byte);
 int						get_bytecodes_count(char **split_line);
-char					**generate_output(char **input, int output_size, int prog_start);
-char					*get_parameters_bytecode(char **params, char *cmd, int line_pos, t_routine *routines);
+char					**generate_output(char **input, int output_size,
+											int prog_start);
+char					*get_parameters_bytecode(char **params, char *cmd,
+										int line_pos, t_routine *routines);
 int						has_acb(char *cmd);
 int						valid_registry(char *reg);
 int						valid_dir_arg(char *dir);
 int						valid_ind_arg(char *ind);
-void					print_to_file(char **output, char *filename, header_t header);
+void					print_to_file(char **output, char *filename,
+										header_t header);
 header_t				get_header(char **input, int *prog_start);
 char					**get_params(char **split_input);
 char					*bin_to_bytecode(char *bin);
-void					invalid_instr(t_routine *head, char **in, char **out, char *l);
+void					invalid_instr(t_routine *head, char **in,
+										char **out, char *l);
 long int				ft_pow(int base, int exponent);
 
 #endif
