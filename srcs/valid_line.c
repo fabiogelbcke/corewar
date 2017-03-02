@@ -168,7 +168,11 @@ int			valid_instruction(char *line)
 		return (0);
 	params = get_params(split_line);
 	if (!valid_parameters(params, *instruction))
+	{
+		ft_free_strarr(params);
+		ft_free_strarr(split_line);
 		return (0);
+	}
 	ft_free_strarr(split_line);
 	ft_free_strarr(params);
 	return (1);
