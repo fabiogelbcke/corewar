@@ -6,9 +6,9 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 13:48:03 by fschuber         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */ 
+/* ************************************************************************** */
 
 #include "asm.h"
 
@@ -33,7 +33,8 @@ static int	getsize(int *i, const char *s, int size)
 {
 	while (s[*i] == ' ' || s[*i] == SEPARATOR_CHAR)
 		(*i)++;
-	while (s[*i + size] != ' ' && s[*i + size] != SEPARATOR_CHAR && s[*i + size])
+	while (s[*i + size] != ' '
+			& s[*i + size] != SEPARATOR_CHAR && s[*i + size])
 		size++;
 	return (size);
 }
@@ -66,10 +67,10 @@ char		**get_split_params(char const *s)
 	return (table);
 }
 
-char			**get_params(char **split_input)
+char		**get_params(char **split_input)
 {
-	char		*params;
-	char		**split_params;
+	char	*params;
+	char	**split_params;
 
 	if (!split_input || !split_input[0] || !split_input[1])
 		return (NULL);

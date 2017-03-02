@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:00:24 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		valid_ind_arg(char *ind)
 		return (0);
 	if (ind[0] == LABEL_CHAR)
 		return (valid_label(ind));
-	if (ft_strlen(ind) >= 3 && ft_isnbr(&ind[1]) && ind[0] == '-')
+	if (ft_strlen(ind) >= 2 && ft_isnbr(&ind[1]) && ind[0] == '-')
 		return (1);
 	return (ft_isnbr(ind));
 }

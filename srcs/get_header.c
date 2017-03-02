@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 13:49:13 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ header_t			get_header(char **input, int *prog_start)
 			done += 2;
 		}
 		else if (!is_empty(input[i]) && !is_comment(input[i]))
-			break;
+			break ;
 		i++;
 	}
 	*prog_start = 0;
 	return (header);
 }
-

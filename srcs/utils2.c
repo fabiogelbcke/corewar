@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 13:45:02 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long int		ft_pow(int base, int exponent)
 {
 	long int	res;
-	int	i;
+	int			i;
 
 	res = 1;
 	i = 0;
@@ -32,9 +32,9 @@ long int		ft_pow(int base, int exponent)
 	return (res);
 }
 
-int			get_dir_size(char *cmd)
+int				get_dir_size(char *cmd)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (i < 16)
@@ -46,7 +46,7 @@ int			get_dir_size(char *cmd)
 	return (0);
 }
 
-int			get_param_size(char *param, char *cmd)
+int				get_param_size(char *param, char *cmd)
 {
 	if (param[0] == 'r')
 		return (1);
@@ -74,10 +74,10 @@ char			*bin_to_bytecode(char *bin)
 	return (int_to_bytecode(dec, 1));
 }
 
-char			*get_separator()
+char			*get_separator(void)
 {
 	char		*separator;
-	
+
 	separator = ft_strdup("a");
 	separator[0] = SEPARATOR_CHAR;
 	return (separator);

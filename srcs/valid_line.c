@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:01:01 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,13 +137,9 @@ int			valid_parameters(char **params, t_op instruction)
 	while (params[i] && instruction.args_type[i])
 	{
 		if (i == MAX_ARGS_NUMBER)
-		{
 			return (0);
-		}
 		if ((arg_number(params[i]) & instruction.args_type[i]) == 0)
-		{
 			return (0);
-		}
 		i++;
 	}
 	if (i != (int)ft_strlen(instruction.args_type) || params[i] != NULL)
