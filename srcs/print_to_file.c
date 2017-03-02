@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:08:28 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */ 
 
@@ -15,16 +15,14 @@
 char			*get_file_name(char *filename)
 {
 	char		*out_name;
-	char		**tmp;
+	int			i;
 
-	tmp = ft_strsplit(filename, '.');
-	if (ft_strarr_len(tmp) > 1)
-	{
-		tmp[ft_strarr_len(tmp) - 1] = NULL;
-	}
-
-	out_name = ft_join_strarr(tmp, '.');
-	ft_free_strarr(tmp);
+	out_name = ft_strdup(filename);
+	i = ft_strlen(out_name) - 1;
+	while (i > 0 && out_name[i] != '.')
+		i--;
+	if (i != 0)
+		out_name[i] = 0;
 	out_name = ft_strappend_free(out_name, ft_strdup(".cor"));
 	return (out_name);
 }

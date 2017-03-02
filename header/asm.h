@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/01/23 18:48:50 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 13:46:20 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void					print_to_file(char **output, char *filename, header_t header);
 header_t				get_header(char **input, int *prog_start);
 char					**get_params(char **split_input);
 char					*bin_to_bytecode(char *bin);
-void					invalid_instr(t_routine *head, char **in, char **out, char *line);
+void					invalid_instr(t_routine *head, char **in, char **out, char *l);
 long int				ft_pow(int base, int exponent);
 
 #endif
