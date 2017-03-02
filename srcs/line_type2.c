@@ -42,6 +42,21 @@ int			is_comment(char *line)
 
 int			is_name(char *line)
 {
+	int		i;
+
+	i = 0;
+	if (is_empty(line))
+		return (0);
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+		i++;
+	if (!ft_startswith(&line[i], NAME_CMD_STRING))
+		return (0);
+	return (1);
+}
+
+/*
+int			is_name(char *line)
+{
 	char	**split_line;
 
 	if (is_empty(line))
@@ -49,11 +64,12 @@ int			is_name(char *line)
 	split_line = ft_split_spaces(line);
 	if (ft_strcmp(split_line[0], NAME_CMD_STRING))
 	{
+		ft_free_strarr(split_line);
 		return (0);
 	}
 	ft_free_strarr(split_line);
 	return (1);
-	}
+	}*/
 	
 int			is_initial_comment(char *line)
 {
