@@ -58,9 +58,10 @@ char			*get_coding_byte(char **params, char *cmd)
 	if (!has_acb(cmd))
 		return (binary);
 	while (params[i])
-		binary = ft_strjoin(binary, param_code(params[i++]));
+		binary = ft_strappend_free(binary,
+								   ft_strdup(param_code(params[i++])));
 	while (ft_strlen(binary) < 8)
-		binary = ft_strjoin(binary, "00");
+		binary = ft_strappend_free(binary, ft_strdup("00"));
 	separator = ft_strdup("a");
 	separator[0] = SEPARATOR_CHAR;
 	return (ft_strappend_free(bin_to_bytecode(binary), separator));
@@ -85,6 +86,19 @@ char			*generate_line(char *input_line, t_routine *routines)
 	ft_free_strarr(split_input);
 	ft_free_strarr(params);
 	return (line);
+}
+
+void			free_routines(t_routine *routines)
+{
+	t_routine	*next;
+
+	while (routines)
+	{
+		next = routines->next;
+		free(routines->name);
+		free(routines);
+		routines = next;
+	}
 }
 
 char			**generate_output(char **input, int output_size, int prog_start)
@@ -112,5 +126,6 @@ char			**generate_output(char **input, int output_size, int prog_start)
 		i++;
 	}
 	output[j] = NULL;
+	free_routines(routines);
 	return (output);
 }

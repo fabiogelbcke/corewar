@@ -34,6 +34,7 @@ int			valid_initial_comment(char *line)
 		free(tmp);
 		return (0);
 	}
+	free(tmp);
 	return (1);
 }
 
@@ -100,7 +101,11 @@ int			valid_routine(char *line, t_routine *routines)
 			return (0);
 	}
 	if (routine_exists(split_line[0], routines))
+	{
+		ft_free_strarr(split_line);
 		return (0);
+	}
+	ft_free_strarr(split_line);
 	return (1);
 }
 

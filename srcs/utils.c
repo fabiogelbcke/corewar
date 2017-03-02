@@ -35,7 +35,7 @@ int			get_bytecodes_count(char **split_line)
 		count += get_param_size(params[i], split_line[0]);
 		i++;
 	}
-	free(params);
+	ft_free_strarr(params);
 	return (count);
 }
 
