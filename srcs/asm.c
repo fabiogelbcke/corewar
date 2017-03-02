@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:34:18 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:20:22 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */ 
 
@@ -71,7 +71,7 @@ int				get_output_size(char **output)
 	return size;
 }
 
-void			free_header(header_t header)
+void			free_header(t_header header)
 {
 	free(header.prog_name);
 	free(header.comment);
@@ -81,7 +81,7 @@ int				main(int argc, char **argv)
 {
 	char		**input;
 	char		**output;
-	header_t	header;
+	t_header	header;
 	int			prog_start;
 
 	if (argc < 2)

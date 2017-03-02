@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:31:03 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:20:05 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			print_header_int(int val, int fd)
 	ft_free_strarr(split);
 }
 
-void			write_header(header_t header, int fd)
+void			write_header(t_header header, int fd)
 {
 	int			i;
 
@@ -97,7 +97,7 @@ void			write_header(header_t header, int fd)
 	}
 }
 
-void			print_to_file(char **output, char *filename, header_t header)
+void			print_to_file(char **output, char *filename, t_header header)
 {
 	char		*out_name;
 	int			fd;

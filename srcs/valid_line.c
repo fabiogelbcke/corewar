@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:32:28 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:22:26 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ t_op		*valid_instruction_name(char *name)
 	i = 0;
 	while (i < 16)
 	{
-		if (!ft_strcmp(name, op_tab[i].name))
-			return (&op_tab[i]);
+		if (!ft_strcmp(name, g_op_tab[i].name))
+			return (&g_op_tab[i]);
 		i++;
 	}
 	return (NULL);

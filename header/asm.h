@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:37:32 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:23:41 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct			s_op
 	char				dir_size;
 }						t_op;
 
-extern t_op op_tab[17];
+extern t_op				g_op_tab[17];
 
 int						is_empty(char *line);
 int						is_comment(char *line);
@@ -74,8 +74,8 @@ int						valid_registry(char *reg);
 int						valid_dir_arg(char *dir);
 int						valid_ind_arg(char *ind);
 void					print_to_file(char **output, char *filename,
-										header_t header);
-header_t				get_header(char **input, int *prog_start);
+										t_header header);
+t_header				get_header(char **input, int *prog_start);
 char					**get_params(char **split_input);
 char					*bin_to_bytecode(char *bin);
 void					invalid_instr(t_routine *head, char **in,

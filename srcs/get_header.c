@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:24:33 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:20:37 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int					get_magic(char *magic_hex)
 	return (mult);
 }
 
-header_t			get_header(char **input, int *prog_start)
+t_header			get_header(char **input, int *prog_start)
 {
-	header_t		header;
+	t_header		header;
 	int				i;
 	int				done;
 

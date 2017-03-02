@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 13:45:02 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:23:02 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int				get_dir_size(char *cmd)
 	i = 0;
 	while (i < 16)
 	{
-		if (!ft_strcmp(op_tab[i].name, cmd))
-			return (op_tab[i].dir_size == 0 ? 4 : 2);
+		if (!ft_strcmp(g_op_tab[i].name, cmd))
+			return (g_op_tab[i].dir_size == 0 ? 4 : 2);
 		i++;
 	}
 	return (0);

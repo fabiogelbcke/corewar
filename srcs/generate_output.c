@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:19:44 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:22:04 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ char			*get_opcode(char *cmd)
 	separator[0] = SEPARATOR_CHAR;
 	while (i < 16)
 	{
-		if (!ft_strcmp(op_tab[i].name, cmd))
+		if (!ft_strcmp(g_op_tab[i].name, cmd))
 		{
-			opcode = int_to_bytecode(op_tab[i].opcode, 1);
+			opcode = int_to_bytecode(g_op_tab[i].opcode, 1);
 			res = ft_strappend_free(opcode, separator);
 			return (res);
 		}
