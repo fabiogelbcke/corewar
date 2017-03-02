@@ -60,6 +60,7 @@ t_routine		*get_routines(char **input)
 			curr = create_routine(split_line[0], pos);
 			curr->next = last;
 			last = curr;
+			free(input[i]);
 			input[i] = ft_join_strarr(&split_line[1], ' ');
 			ft_free_strarr(split_line);
 		}
