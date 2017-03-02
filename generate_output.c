@@ -106,7 +106,7 @@ char			**generate_output(char **input, int output_size, int prog_start)
 			if (valid_instruction(input[i]))
 				output[j++] = generate_line(input[i], routines);
 			else
-				exit_invalid_instruction(routines, output, input, input[i]);
+				invalid_instr(routines, output, input, input[i]);
 		}
 		i++;
 	}

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */ 
 
+#include "asm.h"
+
 void			invalid_instr(t_routine *head, char **in, char **out, char *line)
 {
 	t_routine	*next;
@@ -23,7 +25,7 @@ void			invalid_instr(t_routine *head, char **in, char **out, char *line)
 	}
 	ft_putstr("Invalid instruction : ");
 	ft_putendl(line);
-	ft_free_strarr(output);
-	ft_free_strarr(input);
+	ft_free_strarr(out);
+	ft_free_strarr(in);
 	exit(1);
 }

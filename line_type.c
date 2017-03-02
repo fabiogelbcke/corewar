@@ -19,7 +19,7 @@ int			is_comment(char *line)
 	if (is_empty(line))
 		return (0);
 	split_line = ft_split_spaces(line);
-	if (ft_strcmp(split_line[0], COMMENT_CMD_STRING))
+	if (split_line[0][0] != COMMENT_CHAR)
 	{
 		ft_free_strarr(split_line);
 		return (0);

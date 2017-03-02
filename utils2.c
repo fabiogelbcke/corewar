@@ -76,6 +76,8 @@ char			*bin_to_bytecode(char *bin)
 
 char			*get_separator()
 {
+	char		*separator;
+	
 	separator = ft_strdup("a");
 	separator[0] = SEPARATOR_CHAR;
 	return (separator);

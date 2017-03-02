@@ -68,11 +68,6 @@ header_t			get_header(char **input, int *prog_start)
 			*prog_start = i;
 			return (header);
 		}
-		else if (is_empty(input[i]) || is_comment(input[i]))
-		{
-			i++;
-			continue ;
-		}
 		else if (is_name(input[i]) && (done & 1) == 0 && valid_name(input[i]))
 		{
 			ft_strcpy(header.prog_name, get_name_comment(input[i], 1));
@@ -84,7 +79,7 @@ header_t			get_header(char **input, int *prog_start)
 			ft_strcpy(header.comment, get_name_comment(input[i], 2));
 			done += 2;
 		}
-		else
+		else if (!is_empty(input[i]) && !is_comment(input[i]))
 			break;
 		i++;
 	}

@@ -75,7 +75,8 @@ int						valid_ind_arg(char *ind);
 void					print_to_file(char **output, char *filename, header_t header);
 header_t				get_header(char **input, int *prog_start);
 char					**get_params(char **split_input);
-char					*bin_to_bytecode(char *bin)
-void					invalid_instr(t_routine *head, char **in, char **out, char *line)
+char					*bin_to_bytecode(char *bin);
+void					invalid_instr(t_routine *head, char **in, char **out, char *line);
+long int				ft_pow(int base, int exponent);
 
 #endif
