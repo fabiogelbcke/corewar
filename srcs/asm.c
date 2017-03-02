@@ -71,12 +71,6 @@ int				get_output_size(char **output)
 	return size;
 }
 
-void			free_header(t_header header)
-{
-	free(header.prog_name);
-	free(header.comment);
-}
-
 int				main(int argc, char **argv)
 {
 	char		**input;

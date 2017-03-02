@@ -48,7 +48,6 @@ int					get_magic(char *magic_hex)
 		mult = mult * 16;
 		i--;
 	}
-	//TODO control for magic that might be bigger than unsigned int upper limit
 	return (mult);
 }
 
