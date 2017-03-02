@@ -96,7 +96,7 @@ int				main(int argc, char **argv)
 	if (prog_start == 0)
 	{
 		ft_putendl("Invalid header");
-		free(input);
+		ft_free_strarr(input);
 		exit(1);
 	}
 	output = generate_output(input, ft_strarr_len(input), prog_start);
