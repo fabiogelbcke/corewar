@@ -78,7 +78,6 @@ void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_cmpnocase(char *s1, char *s2);
 int		ft_gnl(int const fd, char **line);
-void	*ft_realloc(void *ptr, size_t size, size_t prev_size);
 char	*ft_join_strarr(char **strarr, char separator);
 int		ft_startswith(char *str, char *sub);
 void	ft_free_strarr(char **strarr);
