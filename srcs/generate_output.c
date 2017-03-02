@@ -6,9 +6,9 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:19:44 by fschuber         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */ 
+/* ************************************************************************** */
 
 #include "asm.h"
 
@@ -52,12 +52,12 @@ char			*get_coding_byte(char **params, char *cmd)
 	char		*binary;
 	int			i;
 	char		*separator;
-	
+
 	i = 0;
 	binary = ft_strdup("");
 	if (!has_acb(cmd))
 		return (binary);
-	while(params[i])
+	while (params[i])
 		binary = ft_strjoin(binary, param_code(params[i++]));
 	while (ft_strlen(binary) < 8)
 		binary = ft_strjoin(binary, "00");
@@ -79,13 +79,13 @@ char			*generate_line(char *input_line, t_routine *routines)
 	params = get_params(split_input);
 	line = get_opcode(cmd);
 	line = ft_strappend_free(line, get_coding_byte(params, cmd));
-	line = ft_strappend_free(line, get_parameters_bytecode(params, cmd, line_pos, routines));
+	line = ft_strappend_free(line, get_parameters_bytecode(params, cmd,
+												line_pos, routines));
 	line_pos += get_bytecodes_count(split_input);
 	ft_free_strarr(split_input);
 	ft_free_strarr(params);
 	return (line);
 }
-
 
 char			**generate_output(char **input, int output_size, int prog_start)
 {
@@ -110,5 +110,5 @@ char			**generate_output(char **input, int output_size, int prog_start)
 		i++;
 	}
 	output[j] = NULL;
-	return output;
+	return (output);
 }

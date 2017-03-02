@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 13:49:13 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:24:33 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ header_t			get_header(char **input, int *prog_start)
 			done += 1;
 		}
 		else if (is_initial_comment(input[i]) && ((done & 2) == 0)
-				 && valid_initial_comment(input[i]))
+					&& valid_initial_comment(input[i]))
 		{
 			ft_strcpy(header.comment, get_name_comment(input[i], 2));
 			done += 2;

@@ -6,9 +6,9 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/02/10 18:00:07 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:16:59 by fschuber         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */ 
+/* ************************************************************************** */
 
 #include "asm.h"
 
@@ -46,11 +46,11 @@ char		*int_to_bytecode(long int val, int bytes)
 	int		i;
 
 	if (val < 0)
-		return (int_to_bytecode(ft_pow(2, 8*bytes) + val, bytes));
+		return (int_to_bytecode(ft_pow(2, 8 * bytes) + val, bytes));
 	size = 5 * bytes;
 	bytecode = malloc(sizeof(char) * size);
-	i = size - 2;
-	while (i >= 0)
+	i = size - 1;
+	while (--i >= 0)
 	{
 		if ((i + 4) % 5 == 0)
 			bytecode[i] = 'x';
@@ -63,7 +63,6 @@ char		*int_to_bytecode(long int val, int bytes)
 			bytecode[i] = ((val % 16) > 9) ? (val % 16) + 87 : (val % 16) + 48;
 			val = val / 16;
 		}
-		i--;
 	}
 	bytecode[size - 1] = 0;
 	return (bytecode);
@@ -77,11 +76,11 @@ int			has_acb(char *cmd)
 	return (0);
 }
 
-char			**get_params(char **split_input)
+char		**get_params(char **split_input)
 {
-	int			i;
-	char		*tmp;
-	char		**params;
+	int		i;
+	char	*tmp;
+	char	**params;
 
 	tmp = ft_join_strarr(&(split_input[1]), ' ');
 	params = ft_strsplit(tmp, SEPARATOR_CHAR);
@@ -95,5 +94,5 @@ char			**get_params(char **split_input)
 		i++;
 	}
 	i = 0;
-	return params;
+	return (params);
 }

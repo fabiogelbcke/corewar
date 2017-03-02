@@ -6,12 +6,11 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:01:01 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:32:28 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
 
 int			valid_initial_comment(char *line)
 {
@@ -67,7 +66,7 @@ int			routine_exists(char *name, t_routine *routines)
 {
 	while (routines)
 	{
-		if (!ft_strcmp(name,routines->name))
+		if (!ft_strcmp(name, routines->name))
 			return (1);
 		routines = routines->next;
 	}
@@ -92,7 +91,7 @@ int			valid_routine(char *line, t_routine *routines)
 			if (LABEL_CHARS[j] == split_line[0][i])
 			{
 				i++;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -152,7 +151,7 @@ int			valid_instruction(char *line)
 	char	**split_line;
 	char	**params;
 	t_op	*instruction;
-	
+
 	if (!is_instruction(line))
 		return (0);
 	split_line = ft_split_spaces(line);

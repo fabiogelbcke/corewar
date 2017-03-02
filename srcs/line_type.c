@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line_type.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/02 14:11:06 by fschuber          #+#    #+#             */
+/*   Updated: 2017/03/02 14:12:00 by fschuber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 int			is_empty(char *line)
 {
 	char	**split_line;
-	
+
 	if (ft_strlen(line) == 0)
 		return (1);
 	split_line = ft_split_spaces(line);
@@ -14,7 +26,7 @@ int			is_empty(char *line)
 
 int			is_comment(char *line)
 {
-		char	**split_line;
+	char	**split_line;
 
 	if (is_empty(line))
 		return (0);
@@ -27,8 +39,6 @@ int			is_comment(char *line)
 	ft_free_strarr(split_line);
 	return (1);
 }
-
-
 
 int			is_name(char *line)
 {

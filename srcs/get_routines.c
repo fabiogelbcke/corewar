@@ -6,17 +6,15 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/01/23 18:48:50 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:29:56 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-
-
-t_routine	*create_routine(char *name, int pos)
+t_routine		*create_routine(char *name, int pos)
 {
-	t_routine *new_rout;
+	t_routine	*new_rout;
 
 	new_rout = malloc(sizeof(t_routine));
 	new_rout->name = ft_strdup(name);
@@ -69,5 +67,5 @@ t_routine		*get_routines(char **input)
 			pos += get_bytecodes_count(ft_split_spaces(input[i]));
 		i++;
 	}
-	return curr;
+	return (curr);
 }

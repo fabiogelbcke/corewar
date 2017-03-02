@@ -6,9 +6,9 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:08:28 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/02 14:31:03 by fschuber         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */ 
+/* ************************************************************************** */
 
 #include "asm.h"
 
@@ -63,7 +63,7 @@ void			print_header_int(int val, int fd)
 	char		*str;
 	char		**split;
 	int			i;
-	
+
 	str = int_to_bytecode(val, sizeof(unsigned int));
 	split = ft_strsplit(str, ',');
 	free(str);
@@ -76,7 +76,7 @@ void			print_header_int(int val, int fd)
 void			write_header(header_t header, int fd)
 {
 	int			i;
-	
+
 	print_header_int(header.magic, fd);
 	i = 0;
 	while (header.prog_name[i])
@@ -103,7 +103,7 @@ void			print_to_file(char **output, char *filename, header_t header)
 	int			fd;
 
 	out_name = get_file_name(filename);
-	fd = open(out_name, O_WRONLY|O_CREAT|O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+	fd = open(out_name, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
 	if (fd == -1)
 	{
 		ft_free_strarr(output);
@@ -111,7 +111,6 @@ void			print_to_file(char **output, char *filename, header_t header)
 		free(out_name);
 		exit(1);
 	}
-
 	write_header(header, fd);
 	write_program(output, fd);
 	ft_putstr("Printing to file ");
