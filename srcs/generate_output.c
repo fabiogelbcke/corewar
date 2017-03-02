@@ -52,6 +52,7 @@ char			*get_coding_byte(char **params, char *cmd)
 	char		*binary;
 	int			i;
 	char		*separator;
+	char		*tmp;
 
 	i = 0;
 	binary = ft_strdup("");
@@ -64,7 +65,9 @@ char			*get_coding_byte(char **params, char *cmd)
 		binary = ft_strappend_free(binary, ft_strdup("00"));
 	separator = ft_strdup("a");
 	separator[0] = SEPARATOR_CHAR;
-	return (ft_strappend_free(bin_to_bytecode(binary), separator));
+	tmp = bin_to_bytecode(binary);
+	free(binary);
+	return (ft_strappend_free(tmp, separator));
 }
 
 char			*generate_line(char *input_line, t_routine *routines)
