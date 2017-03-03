@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 10:36:17 by nhuber            #+#    #+#             */
-/*   Updated: 2017/03/03 13:27:35 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 13:43:07 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ int			valid_routine(char *line, t_routine *routines)
 	int		j;
 
 	split_line = ft_split_spaces(line);
-	i = 0;
+	i = -1;
 	if (ft_strarr_len(split_line) == 0)
 		return (0);
-	while (i < (int)ft_strlen(split_line[0]))
+	while (++i < (int)ft_strlen(split_line[0]))
 	{
 		j = -1;
 		while (LABEL_CHARS[++j])
 		{
-			if (LABEL_CHARS[j] == split_line[0][i++])
+			if (LABEL_CHARS[j] == split_line[0][i])
 				break ;
 		}
 		if (!LABEL_CHARS[j])
