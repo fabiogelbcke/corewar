@@ -78,11 +78,6 @@ char			*generate_line(char *input_line, t_routine *routines)
 	static int	line_pos = 0;
 	char		*line;
 
-	if (ft_strrchr(input_line, COMMENT_CHAR))
-	{
-		cmd = ft_strrchr(input_line, COMMENT_CHAR);
-		cmd = 0;
-	}
 	split_input = ft_split_spaces(input_line);
 	cmd = split_input[0];
 	params = get_params(split_input);
@@ -102,6 +97,7 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	int			i;
 	int			j;
 	char		**output;
+	char		*ptr;
 
 	routines = get_routines(input);
 	i = prog_start;
@@ -111,10 +107,13 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	{
 		if (is_instruction(input[i]))
 		{
-			if (valid_instruction(input[i]))
+			if (ft_strrchr(input[i], COMMENT_CHAR))
 			{
-				output[j++] = generate_line(input[i], routines);
+				ptr = ft_strrchr(input[i], COMMENT_CHAR);
+				*ptr = '\0';
 			}
+			if (valid_instruction(input[i]))
+				output[j++] = generate_line(input[i], routines);
 			else
 				invalid_instr(routines, output, input, input[i]);
 		}
