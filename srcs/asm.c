@@ -6,9 +6,9 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 15:20:22 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 11:12:42 by nhuber           ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */ 
+/* ************************************************************************** */
 
 #include "asm.h"
 
@@ -18,22 +18,20 @@ char			**get_input(char *filename)
 	int			total_size;
 	int			i;
 	int			fd;
-	
-	input = ft_memalloc(BUF_SIZE * sizeof(char*));
-	if (!input)
+
+	if ((input = (char **)ft_memalloc(sizeof(char *) * BUF_SIZE)) == NULL)
 		return (NULL);
 	total_size = BUF_SIZE;
 	i = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{		
+	if ((fd = open(filename, O_RDONLY)) == -1)
+	{
 		free(input);
 		return (NULL);
 	}
 	while (++i)
 	{
 		if (ft_gnl(fd, &(input[i - 1])) == 0)
-			break;
+			break ;
 		if (i == total_size - 1)
 		{
 			input = realloc(input, (total_size + BUF_SIZE) * sizeof(char*));
@@ -68,7 +66,7 @@ int				get_output_size(char **output)
 			size++;
 		i++;
 	}
-	return size;
+	return (size);
 }
 
 int				main(int argc, char **argv)
@@ -79,7 +77,7 @@ int				main(int argc, char **argv)
 	int			prog_start;
 
 	if (argc < 2)
-		return -1;
+		return (-1);
 	input = get_input(argv[1]);
 	if (!input)
 	{

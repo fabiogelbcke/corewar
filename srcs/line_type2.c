@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:11:06 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:12:00 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 11:18:57 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			is_name(char *line)
 		return (0);
 	return (1);
 }
-	
+
 int			is_initial_comment(char *line)
 {
 	int		i;

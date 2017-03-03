@@ -6,26 +6,11 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 15:20:05 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 11:01:46 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-char			*get_file_name(char *filename)
-{
-	char		*out_name;
-	int			i;
-
-	out_name = ft_strdup(filename);
-	i = ft_strlen(out_name) - 1;
-	while (i > 0 && out_name[i] != '.')
-		i--;
-	if (i != 0)
-		out_name[i] = 0;
-	out_name = ft_strappend_free(out_name, ft_strdup(".cor"));
-	return (out_name);
-}
 
 char			hex_to_char(char *hex)
 {
@@ -103,7 +88,8 @@ void			print_to_file(char **output, char *filename, t_header header)
 	int			fd;
 
 	out_name = get_file_name(filename);
-	fd = open(out_name, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+	fd = open(out_name, O_WRONLY | O_CREAT | O_TRUNC,
+			S_IRWXU | S_IRWXG | S_IRWXO);
 	if (fd == -1)
 	{
 		ft_free_strarr(output);

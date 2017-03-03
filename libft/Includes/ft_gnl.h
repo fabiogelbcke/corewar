@@ -6,14 +6,14 @@
 /*   By: lpousse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 14:43:51 by lpousse           #+#    #+#             */
-/*   Updated: 2016/01/18 15:29:29 by lpousse          ###   ########.fr       */
+/*   Updated: 2017/03/02 21:28:44 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_GNL_H
 # define FT_GNL_H
 
-# define BUFF_SIZE 64
+# define BUFF_SIZE 28
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>

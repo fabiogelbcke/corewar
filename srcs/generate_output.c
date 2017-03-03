@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 15:22:04 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 11:20:05 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char			*get_coding_byte(char **params, char *cmd)
 		return (binary);
 	while (params[i])
 		binary = ft_strappend_free(binary,
-								   ft_strdup(param_code(params[i++])));
+			ft_strdup(param_code(params[i++])));
 	while (ft_strlen(binary) < 8)
 		binary = ft_strappend_free(binary, ft_strdup("00"));
 	separator = ft_strdup("a");
@@ -89,19 +89,6 @@ char			*generate_line(char *input_line, t_routine *routines)
 	ft_free_strarr(split_input);
 	ft_free_strarr(params);
 	return (line);
-}
-
-void			free_routines(t_routine *routines)
-{
-	t_routine	*next;
-
-	while (routines)
-	{
-		next = routines->next;
-		free(routines->name);
-		free(routines);
-		routines = next;
-	}
 }
 
 char			**generate_output(char **input, int output_size, int prog_start)

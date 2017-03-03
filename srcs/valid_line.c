@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 15:22:26 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 11:08:28 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,77 +35,6 @@ int			valid_initial_comment(char *line)
 		return (0);
 	}
 	free(tmp);
-	return (1);
-}
-
-int			valid_name(char *line)
-{
-	int		i;
-	char	*tmp;
-
-	if (!line)
-		return (0);
-	line = ft_strtrim(line);
-	if (!ft_startswith(line, NAME_CMD_STRING))
-	{
-		free(line);
-		return (0);
-	}
-	i = ft_strlen(NAME_CMD_STRING);
-	tmp = ft_strtrim(&(line[i]));
-	free(line);
-	if (ft_strlen(tmp) < 2 || tmp[0] != '"' || tmp[ft_strlen(tmp) - 1] != '"'
-		|| ft_strlen(tmp) > 2 + PROG_NAME_LENGTH)
-	{
-		free(tmp);
-		return (0);
-	}
-	free(tmp);
-	return (1);
-}
-
-int			routine_exists(char *name, t_routine *routines)
-{
-	while (routines)
-	{
-		if (!ft_strcmp(name, routines->name))
-			return (1);
-		routines = routines->next;
-	}
-	return (0);
-}
-
-int			valid_routine(char *line, t_routine *routines)
-{
-	char	**split_line;
-	int		i;
-	int		j;
-
-	split_line = ft_split_spaces(line);
-	i = 0;
-	if (ft_strarr_len(split_line) == 0)
-		return (0);
-	while (i < (int)ft_strlen(split_line[0]))
-	{
-		j = 0;
-		while (LABEL_CHARS[j])
-		{
-			if (LABEL_CHARS[j] == split_line[0][i])
-			{
-				i++;
-				break ;
-			}
-			j++;
-		}
-		if (!LABEL_CHARS[j])
-			return (0);
-	}
-	if (routine_exists(split_line[0], routines))
-	{
-		ft_free_strarr(split_line);
-		return (0);
-	}
-	ft_free_strarr(split_line);
 	return (1);
 }
 

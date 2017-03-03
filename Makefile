@@ -1,19 +1,22 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 ASM = asm
-FILES =    asm.c \
-    valid_line.c \
-    line_type2.c \
-    utils.c \
-    utils2.c \
-    get_routines.c \
-    generate_output.c \
-    op.c \
-    generate_output_params.c \
-    validators_parameters.c \
-    print_to_file.c \
-    get_header.c \
-    exit_error.c
+FILES = asm.c \
+		valid_line.c \
+		line_type2.c \
+		utils.c \
+		utils2.c \
+		get_routines.c \
+		generate_output.c \
+		op.c \
+		generate_output_params.c \
+		generate_output_params2.c \
+		validators_parameters.c \
+		print_to_file.c \
+		file_name.c \
+		get_header.c \
+		free_routines.c \
+		exit_error.c
 
 F_DIR = srcs
 SRCS = $(addprefix $(F_DIR)/, $(FILES))
