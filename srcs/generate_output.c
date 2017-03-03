@@ -78,6 +78,11 @@ char			*generate_line(char *input_line, t_routine *routines)
 	static int	line_pos = 0;
 	char		*line;
 
+	if (ft_strrchr(input_line, COMMENT_CHAR))
+	{
+		cmd = ft_strrchr(input_line, COMMENT_CHAR);
+		cmd = 0;
+	}
 	split_input = ft_split_spaces(input_line);
 	cmd = split_input[0];
 	params = get_params(split_input);
