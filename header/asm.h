@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 13:19:45 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 15:45:19 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int						valid_dir_arg(char *dir);
 int						valid_ind_arg(char *ind);
 char 					*get_label_param(char *param, int line_pose,
 							int size, t_routine *routine);
-t_routine				*get_routines(char **input);
+t_routine				*get_routines(char **input, int i, int pos);
 int						get_param_size(char *param, char *cmd);
 int						get_dir_size(char *cmd);
 char					*get_parameters_bytecode(char **params, char *cmd,
@@ -86,5 +86,6 @@ void					invalid_instr(t_routine *head, char **in,
 										char **out, char *l);
 long int				ft_pow(int base, int exponent);
 void					free_routines(t_routine *routines);
+void					eliminate_comments(char *line);
 
 #endif

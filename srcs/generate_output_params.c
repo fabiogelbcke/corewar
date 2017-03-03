@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 13:21:17 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 14:40:39 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ char		*get_parameters_bytecode(char **params, char *cmd,
 	separator = ft_strdup(" ");
 	separator[0] = SEPARATOR_CHAR;
 	params_bytecode = ft_strdup("");
-	i = 0;
-	while (params[i])
+	i = -1;
+	while (params[++i])
 	{
 		old = params_bytecode;
 		tmp = get_param_bc(params[i], cmd, line_pos, routines);
@@ -88,7 +88,6 @@ char		*get_parameters_bytecode(char **params, char *cmd,
 		old = params_bytecode;
 		params_bytecode = ft_strjoin(params_bytecode, separator);
 		free(old);
-		i++;
 	}
 	free(separator);
 	if (i > 0)

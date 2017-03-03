@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 10:36:17 by nhuber            #+#    #+#             */
-/*   Updated: 2017/03/03 13:43:07 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 14:43:41 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ void		free_routines(t_routine *routines)
 		free(routines);
 		routines = next;
 	}
+}
+
+int			is_routine(char *line)
+{
+	int		is_rout;
+	int		i;
+
+	is_rout = !is_empty(line) && !is_comment(line);
+	is_rout = is_rout && !is_name(line);
+	i = 0;
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+		i++;
+	while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+		i++;
+	is_rout = is_rout && (i > 0 && line[i - 1] == LABEL_CHAR);
+	return (is_rout);
 }
 
 static int	routine_exists(char *name, t_routine *routines)

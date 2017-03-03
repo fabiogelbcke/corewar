@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:29:56 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 15:37:58 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ void			exit_bad_routine(t_routine *head, char **input, char *rout)
 
 int				increase_pos(char *line)
 {
+	int		pos;
+	char	**split_line;
+
 	split_line = ft_split_spaces(line);
-	pos += get_bytecodes_count(split_line);
+	pos = get_bytecodes_count(split_line);
 	ft_free_strarr(split_line);
+	return (pos);
 }
 
 t_routine		*get_routines(char **input, int i, int pos)

@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:11:06 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/02 14:12:00 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/03 14:43:21 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,6 @@ int			is_initial_comment(char *line)
 	if (!ft_startswith(&line[i], COMMENT_CMD_STRING))
 		return (0);
 	return (1);
-}
-
-int			is_routine(char *line)
-{
-	int		is_rout;
-	int		i;
-
-	is_rout = !is_empty(line) && !is_comment(line);
-	is_rout = is_rout && !is_name(line);
-	is_rout = is_rout && !is_initial_comment(line);
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	while (line[i] && (line[i] != ' ' && line[i] != '\t'))
-		i++;
-	is_rout = is_rout && (i > 0 && line[i - 1] == LABEL_CHAR);
-	return (is_rout);
 }
 
 int			is_instruction(char *line)

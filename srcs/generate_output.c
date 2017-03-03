@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 11:20:05 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 15:48:32 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,6 @@ char			*generate_line(char *input_line, t_routine *routines)
 	return (line);
 }
 
-void			eliminate_comments(char *line)
-{
-	char		*ptr;
-	
-	if (ft_strrchr(line, COMMENT_CHAR))
-	{
-		ptr = ft_strrchr(line, COMMENT_CHAR);
-		*ptr = '\0';
-	}
-	if (ft_strrchr(line, ';'))
-	{
-		ptr = ft_strrchr(line, ';');
-		*ptr = '\0';
-	}
-}
-
 char			**generate_output(char **input, int output_size, int prog_start)
 {
 	t_routine	*routines;
@@ -114,12 +98,13 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	int			j;
 	char		**output;
 
-	routines = get_routines(input);
+	routines = get_routines(input, -1, 0);
 	i = prog_start;
 	j = 0;
 	output = ft_memalloc(output_size * sizeof(char*) + 1);
 	while (input[i])
 	{
+		eliminate_comments(input[i]);
 		if (is_instruction(input[i]))
 		{
 			if (valid_instruction(input[i]))

@@ -3,9 +3,10 @@ FLAGS = -Wall -Wextra -Werror -g
 ASM = asm
 FILES = asm.c \
 		valid_line.c \
-		line_type2.c \
+		line_type.c \
 		utils.c \
 		utils2.c \
+		utils3.c \
 		get_routines.c \
 		generate_output.c \
 		op.c \
