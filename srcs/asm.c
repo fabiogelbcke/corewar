@@ -6,28 +6,22 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 15:40:12 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 17:33:07 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char			**get_input(char *filename)
+char			**get_next_input(int fd)
 {
-	char		**input;
-	int			total_size;
-	int			i;
-	int			fd;
+	int		i;
+	char	**input;
+	int		total_size;
 
+	i = 0;
+	total_size = BUF_SIZE;
 	if ((input = (char **)ft_memalloc(sizeof(char *) * BUF_SIZE)) == NULL)
 		return (NULL);
-	total_size = BUF_SIZE;
-	i = 0;
-	if ((fd = open(filename, O_RDONLY)) == -1)
-	{
-		free(input);
-		return (NULL);
-	}
 	while (++i)
 	{
 		if (ft_gnl(fd, &(input[i - 1])) == 0)
@@ -41,6 +35,17 @@ char			**get_input(char *filename)
 		}
 	}
 	input[i] = NULL;
+	return (input);
+}
+
+char			**get_input(char *filename)
+{
+	char	**input;
+	int		fd;
+
+	if ((fd = open(filename, O_RDONLY)) == -1)
+		return (NULL);
+	input = get_next_input(fd);
 	close(fd);
 	return (input);
 }
@@ -78,14 +83,12 @@ int				main(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
-	input = get_input(argv[1]);
-	if (!input)
+	if (!(input = get_input(argv[1])))
 	{
 		perror(NULL);
 		exit(1);
 	}
 	header = get_header(input, &prog_start);
-
 	if (prog_start == 0)
 	{
 		ft_putendl("Invalid header");

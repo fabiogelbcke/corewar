@@ -6,18 +6,18 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 11:55:54 by nhuber            #+#    #+#             */
-/*   Updated: 2017/03/03 13:20:51 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 17:33:05 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 char	*get_label_param(char *param, int line_pos, int size,
-			t_routine *routine)
+		t_routine *routine)
 {
 	char	**split_param;
 	int		i;
-	
+
 	if (!routine || !ft_strrchr(param, LABEL_CHAR))
 		return (NULL);
 	split_param = ft_strsplit(param, LABEL_CHAR);

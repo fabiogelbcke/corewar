@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 15:48:32 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 17:32:18 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	char		**output;
 
 	routines = get_routines(input, -1, 0);
-	i = prog_start;
+	i = prog_start - 1;
 	j = 0;
 	output = ft_memalloc(output_size * sizeof(char*) + 1);
-	while (input[i])
+	while (input[++i])
 	{
 		eliminate_comments(input[i]);
 		if (is_instruction(input[i]))
@@ -114,7 +114,6 @@ char			**generate_output(char **input, int output_size, int prog_start)
 			else
 				invalid_instr(routines, output, input, input[i]);
 		}
-		i++;
 	}
 	output[j] = NULL;
 	free_routines(routines);
