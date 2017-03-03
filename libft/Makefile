@@ -6,7 +6,7 @@
 #    By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/21 02:01:24 by fschuber          #+#    #+#              #
-#    Updated: 2017/03/02 13:41:56 by fschuber         ###   ########.fr        #
+#    Updated: 2017/03/02 21:22:08 by nhuber           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@
 NAME = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 SRC =	ft_arrlen.c \
 	ft_atoi.c \
 	ft_bzero.c \
