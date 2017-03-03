@@ -16,16 +16,19 @@ char				*get_name_comment(char *line, int type)
 {
 	char			*nc;
 	char			*tmp;
+	char			*tmp2;
 	int				i;
 
 	if (type == 1)
 		i = ft_strlen(NAME_CMD_STRING);
 	else
 		i = ft_strlen(COMMENT_CMD_STRING);
-	tmp = ft_strtrim(&(line[i]));
+	tmp2 = ft_strtrim(line);
+	tmp = ft_strtrim(&(tmp2[i]));
+	free(tmp2);
 	tmp[ft_strlen(tmp) - 1] = 0;
 	nc = malloc(sizeof(char) * ft_strlen(tmp));
-	nc = ft_strcpy(nc, &(tmp[1]));
+	nc = ft_strcpy(nc, ft_strrchr(tmp, '"'));
 	free(tmp);
 	return (nc);
 }

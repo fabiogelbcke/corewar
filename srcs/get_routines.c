@@ -56,7 +56,10 @@ t_routine		*get_routines(char **input)
 			split_line = ft_split_spaces(input[i]);
 			split_line[0][ft_strlen(split_line[0]) - 1] = '\0';
 			if (!valid_routine(split_line[0], last))
+			{
+				ft_putendl(split_line[0]);
 				exit_bad_routine(last, input);
+			}
 			curr = create_routine(split_line[0], pos);
 			curr->next = last;
 			last = curr;
