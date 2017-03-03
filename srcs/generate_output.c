@@ -91,13 +91,28 @@ char			*generate_line(char *input_line, t_routine *routines)
 	return (line);
 }
 
+void			eliminate_comments(char *line)
+{
+	char		*ptr;
+	
+	if (ft_strrchr(line, COMMENT_CHAR))
+	{
+		ptr = ft_strrchr(line, COMMENT_CHAR);
+		*ptr = '\0';
+	}
+	if (ft_strrchr(line, ';'))
+	{
+		ptr = ft_strrchr(line, ';');
+		*ptr = '\0';
+	}
+}
+
 char			**generate_output(char **input, int output_size, int prog_start)
 {
 	t_routine	*routines;
 	int			i;
 	int			j;
 	char		**output;
-	char		*ptr;
 
 	routines = get_routines(input);
 	i = prog_start;
@@ -105,16 +120,6 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	output = ft_memalloc(output_size * sizeof(char*) + 1);
 	while (input[i])
 	{
-		if (ft_strrchr(input[i], COMMENT_CHAR))
-		{
-			ptr = ft_strrchr(input[i], COMMENT_CHAR);
-			*ptr = '\0';
-		}
-		if (ft_strrchr(input[i], ';'))
-		{
-			ptr = ft_strrchr(input[i], ';');
-			*ptr = '\0';
-		}
 		if (is_instruction(input[i]))
 		{
 			if (valid_instruction(input[i]))
