@@ -28,7 +28,14 @@ char				*get_name_comment(char *line, int type)
 	free(tmp2);
 	tmp[ft_strlen(tmp) - 1] = 0;
 	nc = malloc(sizeof(char) * ft_strlen(tmp));
-	nc = ft_strcpy(nc, ft_strrchr(tmp, '"'));
+	tmp2 = ft_strrchr(tmp, '"');
+	if (tmp2)
+		nc = ft_strcpy(nc, tmp2 + 1);
+	else
+	{
+		free(nc);
+		return (NULL);
+	}
 	free(tmp);
 	return (nc);
 }
