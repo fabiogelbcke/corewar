@@ -105,13 +105,18 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	output = ft_memalloc(output_size * sizeof(char*) + 1);
 	while (input[i])
 	{
+		if (ft_strrchr(input[i], COMMENT_CHAR))
+		{
+			ptr = ft_strrchr(input[i], COMMENT_CHAR);
+			*ptr = '\0';
+		}
+		if (ft_strrchr(input[i], ';'))
+		{
+			ptr = ft_strrchr(input[i], ';');
+			*ptr = '\0';
+		}
 		if (is_instruction(input[i]))
 		{
-			if (ft_strrchr(input[i], COMMENT_CHAR))
-			{
-				ptr = ft_strrchr(input[i], COMMENT_CHAR);
-				*ptr = '\0';
-			}
 			if (valid_instruction(input[i]))
 				output[j++] = generate_line(input[i], routines);
 			else
