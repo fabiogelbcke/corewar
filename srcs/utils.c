@@ -71,7 +71,7 @@ char		*int_to_bytecode(long int val, int bytes)
 int			has_acb(char *cmd)
 {
 	if (ft_strcmp(cmd, "fork") && ft_strcmp(cmd, "zjmp")
-		&& ft_strcmp(cmd, "live"))
+		&& ft_strcmp(cmd, "live") && ft_strcmp(cmd, "lfork"))
 		return (1);
 	return (0);
 }
