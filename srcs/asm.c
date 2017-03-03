@@ -85,6 +85,7 @@ int				main(int argc, char **argv)
 		exit(1);
 	}
 	header = get_header(input, &prog_start);
+
 	if (prog_start == 0)
 	{
 		ft_putendl("Invalid header");
