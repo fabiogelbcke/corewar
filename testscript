@@ -1,0 +1,17 @@
+#!/bin/bash
+
+./asm $1
+fullfile=$1
+file=${fullfile%.*}
+mv "$file.cor" "$file.nous"
+
+echo "------------True asm---------"
+./asmzaz $1
+fullfile=$1
+file=${fullfile%.*}
+mv "$file.cor" "$file.zaz"
+
+echo "-----------Diff------------"
+hexdump "$file.nous" > nous.hex
+hexdump "$file.zaz" > zaz.hex
+diff nous.hex zaz.hex
