@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 11:12:42 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/03 13:28:30 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char			**get_input(char *filename)
 			break ;
 		if (i == total_size - 1)
 		{
-			input = realloc(input, (total_size + BUF_SIZE) * sizeof(char*));
+			input = realloc(input, sizeof(char*) * (total_size + BUF_SIZE));
 			if (input == NULL)
 				return (NULL);
 			total_size += BUF_SIZE;

@@ -6,7 +6,7 @@
 #    By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/21 02:01:24 by fschuber          #+#    #+#              #
-#    Updated: 2017/03/02 21:22:08 by nhuber           ###   ########.fr        #
+#    Updated: 2017/03/03 13:31:32 by nhuber           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@
 NAME = libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 SRC =	ft_arrlen.c \
 	ft_atoi.c \
 	ft_bzero.c \
@@ -46,7 +46,6 @@ SRC =	ft_arrlen.c \
 	ft_putnbr_fd.c \
 	ft_putstr.c \
 	ft_putstr_fd.c \
-	ft_realloc.c \
 	ft_split_spaces.c \
 	ft_startswith.c \
 	ft_strappend.c \
