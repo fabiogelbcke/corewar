@@ -46,5 +46,4 @@ asm
 *.a
 *.out
 *.txt
-*.s
 *.cor
