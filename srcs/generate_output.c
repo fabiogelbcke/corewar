@@ -98,7 +98,7 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	int			j;
 	char		**output;
 
-	routines = get_routines(input, -1, 0);
+	routines = get_routines(input, prog_start - 1, 0);
 	i = prog_start - 1;
 	j = 0;
 	output = ft_memalloc(output_size * sizeof(char*) + 1);
