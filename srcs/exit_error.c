@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 17:44:33 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 20:56:19 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			invalid_usage(int i)
 	return (-1);
 }
 
-char 		**invalid_arg(char **input)
+char		**invalid_arg(char **input)
 {
 	if (input != NULL)
 		free(input);

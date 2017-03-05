@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:11:06 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 12:56:59 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 20:55:39 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			is_comment(char *line)
 		return (0);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	if (line[i] && line[i] == '#')
+	if (line[i] && (line[i] == '#' || line[i] == ';'))
 		return (1);
 	return (0);
 }
