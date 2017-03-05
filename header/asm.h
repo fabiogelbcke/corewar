@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 14:58:24 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 17:26:16 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,12 @@ char					*get_parameters_bytecode(char **params, char *cmd,
 										int line_pos, t_routine *routines);
 int						get_bytecodes_count(char **split_line);
 t_header				get_header(char **input, int *prog_start);
-char					*int_to_bytecode(long int val, int byte);
 char					**generate_output(char **input, int output_size,
 											int prog_start);
+char					*int_to_bytecode(long int val, int byte);
 int						has_acb(char *cmd);
 void					print_to_file(char **output, char *filename,
 										t_header header);
-
 char					*get_file_name(char *filename);
 char					**get_params(char **split_input);
 int						add_full_comment(t_header *, char **input,
@@ -87,6 +86,8 @@ int						add_full_comment(t_header *, char **input,
 char					*bin_to_bytecode(char *bin);
 void					invalid_instr(t_routine *head, char **in,
 										char **out, char *l);
+int						invalid_usage(int i);
+char					**invalid_arg(char **input);
 long int				ft_pow(int base, int exponent);
 void					free_routines(t_routine *routines);
 void					eliminate_comments(char *line);

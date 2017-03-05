@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 12:46:14 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 17:27:47 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,24 @@ char			**get_next_input(int fd)
 	int		i;
 	char	**input;
 	int		total_size;
+	int		ret;
 
 	i = 0;
 	total_size = BUF_SIZE;
 	if ((input = (char **)ft_memalloc(sizeof(char *) * BUF_SIZE)) == NULL)
 		return (NULL);
-	while (++i)
+	while ((ret = ft_gnl(fd, &(input[++i - 1]))) > 0)
 	{
-		if (ft_gnl(fd, &(input[i - 1])) == 0)
-			break ;
 		if (i == total_size - 1)
 		{
-			input = realloc(input, sizeof(char*) * (total_size + BUF_SIZE));
-			if (input == NULL)
+			if ((input = realloc(input, sizeof(char*) *
+							(total_size + BUF_SIZE))) == NULL)
 				return (NULL);
 			total_size += BUF_SIZE;
 		}
 	}
+	if (i == 1 && ret == -1)
+		return (invalid_arg(input));
 	input[i] = NULL;
 	return (input);
 }
@@ -82,8 +83,8 @@ int				main(int argc, char **argv)
 	int			prog_start;
 
 	if (argc < 2)
-		return (-1);
-	if (!(input = get_input(argv[1])))
+		return (invalid_usage(argc * -1));
+	if ((input = get_input(argv[1])) == NULL)
 	{
 		perror(NULL);
 		exit(1);
