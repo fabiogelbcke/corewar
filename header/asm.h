@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 15:45:19 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:16:00 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# define BUF_SIZE 20
+# define BUF_SIZE COMMENT_LENGTH
 
 typedef struct			s_routine
 {
@@ -56,13 +56,14 @@ int						is_instruction(char *line);
 int						is_name(char *line);
 int						is_initial_comment(char *line);
 int						is_routine(char *line);
-int						valid_initial_comment(char *line);
+int						valid_initial_comment(char **line, int i);
 int						valid_name(char *line);
 int						valid_routine(char *line, t_routine *routines);
 int						valid_instruction(char *line);
 int						valid_registry(char *reg);
 int						valid_dir_arg(char *dir);
 int						valid_ind_arg(char *ind);
+char					*get_full_comment(char **input, int i, char *begin);
 char 					*get_label_param(char *param, int line_pose,
 							int size, t_routine *routine);
 t_routine				*get_routines(char **input, int i, int pos);

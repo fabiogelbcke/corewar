@@ -6,34 +6,29 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/03 11:08:28 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:33:27 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int			valid_initial_comment(char *line)
+int			valid_initial_comment(char **line, int i)
 {
-	int		i;
 	char	*tmp;
+	char	*begin;
 
-	if (!line)
+	if (!line || !(line[i]))
 		return (0);
-	line = ft_strtrim(line);
-	if (!ft_startswith(line, COMMENT_CMD_STRING))
+	begin = ft_strtrim(line[i]);
+	if (!ft_startswith(begin, COMMENT_CMD_STRING))
 	{
-		free(line);
+		free(begin);
 		return (0);
 	}
-	i = ft_strlen(COMMENT_CMD_STRING);
-	tmp = ft_strtrim(&(line[i]));
-	free(line);
-	if (ft_strlen(tmp) < 2 || tmp[0] != '"' || tmp[ft_strlen(tmp) - 1] != '"'
-		|| ft_strlen(tmp) > 2 + COMMENT_LENGTH)
-	{
-		free(tmp);
+	tmp = get_full_comment(line, i, begin);
+	free(begin);
+	if (tmp == NULL || ft_strlen(tmp) > 2 + COMMENT_LENGTH)
 		return (0);
-	}
 	free(tmp);
 	return (1);
 }
