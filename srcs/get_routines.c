@@ -59,6 +59,7 @@ t_routine		*get_routines(char **input, int i, int pos)
 	last = NULL;
 	while (input[++i])
 	{
+		eliminate_comments(input[i]);
 		if (is_routine(input[i]))
 		{
 			split_line = ft_split_spaces(input[i]);

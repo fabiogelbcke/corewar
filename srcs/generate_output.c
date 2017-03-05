@@ -86,8 +86,6 @@ char			*generate_line(char *input_line, t_routine *routines)
 	line = ft_strappend_free(line, get_parameters_bytecode(params, cmd,
 												line_pos, routines));
 	line_pos += get_bytecodes_count(split_input);
-	ft_free_strarr(split_input);
-	ft_free_strarr(params);
 	return (line);
 }
 
@@ -104,13 +102,10 @@ char			**generate_output(char **input, int output_size, int prog_start)
 	output = ft_memalloc(output_size * sizeof(char*) + 1);
 	while (input[++i])
 	{
-		eliminate_comments(input[i]);
 		if (is_instruction(input[i]))
 		{
 			if (valid_instruction(input[i]))
-			{
 				output[j++] = generate_line(input[i], routines);
-			}
 			else
 				invalid_instr(routines, output, input, input[i]);
 		}
