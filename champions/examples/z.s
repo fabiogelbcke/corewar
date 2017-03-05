@@ -1,9 +1,5 @@
 .name "my name"
 .comment "carailhou
-hello
-it s me
-forever
-
 
 "
 l2:
