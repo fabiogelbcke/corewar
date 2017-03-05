@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 17:26:16 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 17:36:22 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void					invalid_instr(t_routine *head, char **in,
 										char **out, char *l);
 int						invalid_usage(int i);
 char					**invalid_arg(char **input);
+int						invalid_ext(char *path);
 long int				ft_pow(int base, int exponent);
 void					free_routines(t_routine *routines);
 void					eliminate_comments(char *line);

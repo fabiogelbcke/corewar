@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 17:27:47 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 17:44:31 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ char			**get_input(char *filename)
 	char	**input;
 	int		fd;
 
-	if ((fd = open(filename, O_RDONLY)) == -1)
+	fd = 0;
+	if (invalid_ext(filename) < 0 || (fd = open(filename, O_RDONLY)) == -1)
 		return (NULL);
 	input = get_next_input(fd);
 	close(fd);
@@ -85,10 +86,7 @@ int				main(int argc, char **argv)
 	if (argc < 2)
 		return (invalid_usage(argc * -1));
 	if ((input = get_input(argv[1])) == NULL)
-	{
-		perror(NULL);
 		exit(1);
-	}
 	header = get_header(input, &prog_start);
 	if (prog_start == 0)
 	{

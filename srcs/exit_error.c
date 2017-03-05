@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 17:27:02 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 17:44:33 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,22 @@ int			invalid_usage(int i)
 
 char 		**invalid_arg(char **input)
 {
-	free(input);
+	if (input != NULL)
+		free(input);
 	invalid_usage(0);
 	return (NULL);
+}
+
+int			invalid_ext(char *path)
+{
+	int er;
+
+	er = 0;
+	if (path[ft_strlen(path) - 1] != 's' &&
+			path[ft_strlen(path) - 2] != '.')
+	{
+		er = invalid_usage(0);
+		ft_putendl("\tInvalid file extension");
+	}
+	return (er);
 }
