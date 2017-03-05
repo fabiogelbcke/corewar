@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 14:33:27 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 16:07:09 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int			valid_initial_comment(char **line, int i)
 	}
 	tmp = get_full_comment(line, i, begin);
 	free(begin);
-	if (tmp == NULL || ft_strlen(tmp) > 2 + COMMENT_LENGTH)
+	if (tmp == NULL || ft_strlen(tmp) > 2 + COMMENT_LENGTH ||
+			tmp[ft_strlen(tmp) - 1] != '"')
 		return (0);
 	free(tmp);
 	return (1);

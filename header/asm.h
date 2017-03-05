@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 14:16:00 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 14:58:24 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void					print_to_file(char **output, char *filename,
 
 char					*get_file_name(char *filename);
 char					**get_params(char **split_input);
+int						add_full_comment(t_header *, char **input,
+							int i);
 char					*bin_to_bytecode(char *bin);
 void					invalid_instr(t_routine *head, char **in,
 										char **out, char *l);

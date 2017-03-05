@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 13:38:58 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 16:33:56 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ t_header			get_header(char **input, int *prog_start)
 		else if (is_initial_comment(input[i]) && ((done & 2) == 0)
 					&& valid_initial_comment(input, i))
 		{
-			tmp = get_name_comment(input[i], 1);
-			ft_strcpy(header.comment, tmp);
-			free(tmp);
+			i += add_full_comment(&header, input, i);
 			done += 2;
 		}
 		else if (!is_empty(input[i]) && !is_comment(input[i]))

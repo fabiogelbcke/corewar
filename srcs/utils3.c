@@ -6,13 +6,13 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:44:07 by nhuber            #+#    #+#             */
-/*   Updated: 2017/03/05 14:33:29 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/05 16:33:58 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	eliminate_comments(char *line)
+void		eliminate_comments(char *line)
 {
 	char	*ptr;
 
@@ -36,16 +36,11 @@ static char	*multiple_line_comment(char **input, int i, char *str)
 	char	*tmp2;
 
 	eoc = 1;
-	i++;
-	while (input[i] && eoc < 2)
+	while (input[++i] && eoc < 2)
 	{
 		j = 0;
 		while (input[i][j] && eoc < 2)
-		{
-			if (input[i][j] == '"')
-				eoc++;
-			j++;
-		}
+			eoc += (input[i][j++] == '"') ? 1 : 0;
 		tmp = str;
 		str = ft_strjoin(str, "\n");
 		free(tmp);
@@ -54,12 +49,11 @@ static char	*multiple_line_comment(char **input, int i, char *str)
 		tmp2 = str;
 		str = ft_strjoin(str, tmp);
 		free(tmp2);
-		i++;
 	}
 	return (str);
 }
 
-char	*get_full_comment(char **input, int i, char *begin)
+char		*get_full_comment(char **input, int i, char *begin)
 {
 	char	*str;
 	int		j;
@@ -74,8 +68,9 @@ char	*get_full_comment(char **input, int i, char *begin)
 		eoc += (str[k++] == '"') ? 1 : 0;
 	if (eoc == 2)
 	{
-		if (ft_strlen(str) < 2 || str[0] != '"' || str[ft_strlen(str) - 1] != '"'
-				|| ft_strlen(str) > 2 + COMMENT_LENGTH)
+		if (ft_strlen(str) < 2 || str[0] != '"' ||
+				str[ft_strlen(str) - 1] != '"' ||
+				ft_strlen(str) > 2 + COMMENT_LENGTH)
 		{
 			free(str);
 			return (NULL);
@@ -84,4 +79,51 @@ char	*get_full_comment(char **input, int i, char *begin)
 	}
 	str = multiple_line_comment(input, i, str);
 	return (str);
+}
+
+static char	*full_comment_form(char *str)
+{
+	int		i;
+	int		j;
+	char	*ret;
+
+	if (!(ret = (char *)malloc(sizeof(char) * ft_strlen(str) - 1)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != '"')
+			ret[j++] = str[i];
+		i++;
+	}
+	ret[j] = '\0';
+	free(str);
+	return (ret);
+}
+
+int			add_full_comment(t_header *header, char **input, int i)
+{
+	char	*begin;
+	char	*tmp;
+	int		eoc;
+	int		j;
+	int		ret;
+
+	begin = ft_strtrim(input[i]);
+	tmp = get_full_comment(input, i, begin);
+	free(begin);
+	tmp = full_comment_form(tmp);
+	ft_strcpy((*header).comment, tmp);
+	free(tmp);
+	eoc = 0;
+	ret = i;
+	while (eoc < 2 && input[i])
+	{
+		j = 0;
+		while (input[i][j] && eoc < 2)
+			eoc += (input[i][j++] == '"') ? 1 : 0;
+		i++;
+	}
+	return (i - ret);
 }
