@@ -6,13 +6,13 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/01/23 19:22:08 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/06 11:42:34 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_startswith(char *str, char *sub)
+int	ft_startswith(char *str, char *sub)
 {
 	if (!str || !sub)
 		return (0);
@@ -23,5 +23,5 @@ int ft_startswith(char *str, char *sub)
 		str++;
 		sub++;
 	}
-	return !(*sub);
+	return (!(*sub));
 }

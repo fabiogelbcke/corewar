@@ -6,18 +6,17 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/19 09:10:07 by fschuber          #+#    #+#             */
-/*   Updated: 2014/11/28 19:47:54 by fschuber         ###   ########.fr       */
+/*   Updated: 2017/03/06 12:34:42 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_join_strarr(char **strarr, char separator)
+static int	count(char **strarr)
 {
-	int		i;
-	int		j;
-	char	*joined;
-	size_t	size;
+	int i;
+	int j;
+	int	size;
 
 	i = 0;
 	size = 0;
@@ -29,7 +28,19 @@ char		*ft_join_strarr(char **strarr, char separator)
 		size += j + 1;
 		i++;
 	}
-	joined = ft_memalloc(sizeof(char) * size + 1);
+	return (size);
+}
+
+char		*ft_join_strarr(char **strarr, char separator)
+{
+	int		i;
+	int		j;
+	char	*joined;
+	int		size;
+
+	size = count(strarr);
+	if (!(joined = (char *)malloc(sizeof(char) * size + 1)))
+		return (NULL);
 	size = 0;
 	i = 0;
 	while (strarr[i])

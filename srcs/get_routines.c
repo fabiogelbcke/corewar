@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 18:06:16 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/06 11:39:42 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_routine		*get_routines(char **input, int i, int pos)
 	char		**split_line;
 
 	last = NULL;
+	curr = NULL;
 	while (input[++i])
 	{
 		eliminate_comments(input[i]);
@@ -73,8 +74,7 @@ t_routine		*get_routines(char **input, int i, int pos)
 			input[i] = ft_join_strarr(&split_line[1], ' ');
 			ft_free_strarr(split_line);
 		}
-		if (is_instruction(input[i]))
-			pos += increase_pos(input[i]);
+		pos += (is_instruction(input[i])) ? increase_pos(input[i]) : 0;
 	}
 	return (curr);
 }
