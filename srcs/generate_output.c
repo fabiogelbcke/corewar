@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:50 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/06 13:17:05 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:38:51 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ char			*generate_line(char *input_line, t_routine *routines)
 	line = ft_strappend_free(line, get_parameters_bytecode(params, cmd,
 												line_pos, routines));
 	line_pos += get_bytecodes_count(split_input);
+	ft_free_strarr(split_input);
+	ft_free_strarr(params);
 	return (line);
 }
 
