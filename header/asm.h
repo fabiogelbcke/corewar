@@ -6,7 +6,7 @@
 /*   By: fschuber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 17:49:48 by fschuber          #+#    #+#             */
-/*   Updated: 2017/03/05 17:36:22 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/06 12:50:54 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int						valid_registry(char *reg);
 int						valid_dir_arg(char *dir);
 int						valid_ind_arg(char *ind);
 char					*get_full_comment(char **input, int i, char *begin);
-char 					*get_label_param(char *param, int line_pose,
-							int size, t_routine *routine);
+char					*get_label_param(char *param, int line_pose,
+										int size, t_routine *routine);
 t_routine				*get_routines(char **input, int i, int pos);
 int						get_param_size(char *param, char *cmd);
 int						get_dir_size(char *cmd);
@@ -74,15 +74,15 @@ char					*get_parameters_bytecode(char **params, char *cmd,
 int						get_bytecodes_count(char **split_line);
 t_header				get_header(char **input, int *prog_start);
 char					**generate_output(char **input, int output_size,
-											int prog_start);
+										int prog_start);
 char					*int_to_bytecode(long int val, int byte);
 int						has_acb(char *cmd);
 void					print_to_file(char **output, char *filename,
 										t_header header);
 char					*get_file_name(char *filename);
 char					**get_params(char **split_input);
-int						add_full_comment(t_header *, char **input,
-							int i);
+int						add_full_comment(t_header *header, char **input,
+										int i);
 char					*bin_to_bytecode(char *bin);
 void					invalid_instr(t_routine *head, char **in,
 										char **out, char *l);
