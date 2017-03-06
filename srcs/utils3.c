@@ -6,7 +6,7 @@
 /*   By: nhuber <nhuber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:44:07 by nhuber            #+#    #+#             */
-/*   Updated: 2017/03/05 18:21:38 by nhuber           ###   ########.fr       */
+/*   Updated: 2017/03/06 13:22:54 by nhuber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void		eliminate_comments(char *line)
 {
 	char	*ptr;
 
-	if (ft_strrchr(line, COMMENT_CHAR))
+	while (ft_strrchr(line, COMMENT_CHAR))
 	{
 		ptr = ft_strrchr(line, COMMENT_CHAR);
 		*ptr = '\0';
 	}
-	if (ft_strrchr(line, ';'))
+	while (ft_strrchr(line, ';'))
 	{
 		ptr = ft_strrchr(line, ';');
 		*ptr = '\0';
